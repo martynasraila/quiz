@@ -18,8 +18,8 @@ const QuestionBoard = (props) => {
 			<div>
 				{props.answers.map((answer, answerNr) => {
 					return (
-						<div className="answer">
-							<button disabled={props.selectedAnswer} onClick={props.callBack}>
+						<div className="answer" key={answer}>
+							<button disabled={props.selectedAnswer} value={answer} onClick={props.callBack}>
 								<span>
 									{answerNr + 1}. {answer}
 								</span>

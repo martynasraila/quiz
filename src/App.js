@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import QuestionBoard from "./QuestionBoard";
 import { useState } from "react";
+import { fetchQuizQuestions } from "./API";
 
 function App() {
 	const [loading, setLoading] = useState(false);
@@ -11,77 +12,90 @@ function App() {
 	const [score, setScore] = useState(0);
 	const [quizFinished, setQuizFinished] = useState(true);
 
-  
+	const total_questions = 50;
 
 	const startQuiz = async () => {
 		// making a call to quiz api to fetch questions and answers
+		setLoading(true);
+		setQuizFinished(false);
+
+		const newQuestions = await fetchQuizQuestions(total_questions, "easy");
+
+		setQuestions(newQuestions);
+		setScore(0);
+		setSelectedAnswers([]);
+		setCurrentQuestion(0);
+		setLoading(false);
 	};
 
 	const checkAnswer = (ev) => {
 		// check if answer is correct when answer is clicked
+		if (!quizFinished) {
+			// selected answer
+			const answer = ev.currentTarget.value;
+			// compare with the correct answer
+			const answerCorrect =
+				answer === questions[currentQuestion].correct_answer ? true : false;
+			// if correct increment score by 1
+			if (answerCorrect) {
+				setScore((prev) => prev + 1);
+			}
+			// create the answer object and addit to selected answer array
+			const answerObject = {
+				question: questions[currentQuestion].question,
+				answer,
+				answerCorrect,
+				correct_answer: questions[currentQuestion].correct_answer,
+			};
+			setSelectedAnswers((prev) => [...prev, answerObject]);
+		}
 	};
 
 	const showNextQuestion = () => {
-		// triggers when users click on next question
+		// triggers when users click on next question, if its not last question
+		const nextQuestion = currentQuestion + 1;
+
+		if(nextQuestion === total_questions) {
+			setQuizFinished(true);
+
+		}
+		else {
+			setCurrentQuestion(nextQuestion);
+		}
 	};
 
 	return (
-    
 		<div className="App">
 			<h1>React Quiz App</h1>
-			<button className="start" onClick={startQuiz}>
-				Start Quiz
-			</button>
-			<p className="score">Score:</p>
-			<p className="loadbar">Loading questions ...</p>
-			<QuestionBoard
-				answers={questions[currentQuestion].incorrect_answers}
-				question={questions[currentQuestion].question}
-				questionNumber={currentQuestion + 1}
-        		selectedAnswer = {selectedAnswers ? selectedAnswers[currentQuestion] : undefined}
-        		callBack = {checkAnswer}
-				totalQuestions={15}
-			/>
-			<button className="next" onClick={showNextQuestion}>
-				Next Question
-			</button>
+			{quizFinished || selectedAnswers.length === total_questions ? (
+				<button className="start" onClick={startQuiz}>
+					Start Quiz
+				</button>
+			) : null}
+			{!quizFinished ? <p className="score">Score: {score}</p> : null}
+			{loading ? <p className="loadbar">Loading questions ...</p> : null}
+			{!loading && !quizFinished ? (
+				<QuestionBoard
+					answers={questions[currentQuestion].answers}
+					question={questions[currentQuestion].question.replace()}
+					questionNumber={currentQuestion + 1}
+					selectedAnswer={
+						selectedAnswers ? selectedAnswers[currentQuestion] : undefined
+					}
+					callBack={checkAnswer}
+					totalQuestions={total_questions}
+				/>
+			) : null}
+			{!quizFinished &&
+			!loading &&
+			selectedAnswers.length === currentQuestion + 1 &&
+			currentQuestion !== total_questions - 1 ? (
+				<button className="next" onClick={showNextQuestion}>
+					Next Question
+				</button>
+			) : null}
 		</div>
 	);
 }
-
-
-// shuffle algorithm for randomizing the questions
-function createRandom(arr) {
-	let myArr = [...arr]; //copy arr we pass in
-	let randomizedArr = []; //gets popuated by loop
-
-	while (myArr.length > 0) {
-		var randomIndex = Math.floor(Math.random() * myArr.length); //create random number
-		randomizedArr.push(myArr[randomIndex]); //add choice randomly to arr
-		myArr.splice(randomIndex, 1); //cut out a piece of the array then resart loop
-	}
-	//when loop has finished, return random array
-	return randomizedArr;
-}
-
-const data = [
-	{
-		category: "Entertainment: Music",
-		type: "multiple",
-		difficulty: "medium",
-		question:
-			"Who wrote the musical composition, &quot;Rhapsody In Blue&quot;?",
-		correct_answer: "George Gershwin",
-		incorrect_answers: ["Irving Berlin", "Duke Ellington", "Johnny Mandel"],
-	},
-	{
-		category: "General Knowledge",
-		type: "multiple",
-		difficulty: "easy",
-		question: "What is the closest planet to our solar system&#039;s sun?",
-		correct_answer: "Mercury",
-		incorrect_answers: ["Mars", "Jupiter", "Earth"],
-	},
-];
 
 export default App;
