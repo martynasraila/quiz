@@ -1,101 +1,56 @@
-import logo from "./logo.svg";
-import "./App.css";
-import QuestionBoard from "./QuestionBoard";
-import { useState } from "react";
-import { fetchQuizQuestions } from "./API";
+import React, { useEffect, useState } from "react";
+import { fetchCategories } from "./API";
+import Quiz from "./Quiz";
 
-function App() {
-	const [loading, setLoading] = useState(false);
-	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [questions, setQuestions] = useState([]);
-	const [selectedAnswers, setSelectedAnswers] = useState([]);
-	const [score, setScore] = useState(0);
-	const [quizFinished, setQuizFinished] = useState(true);
-
-	const total_questions = 50;
-
-	const startQuiz = async () => {
-		// making a call to quiz api to fetch questions and answers
-		setLoading(true);
-		setQuizFinished(false);
-
-		const newQuestions = await fetchQuizQuestions(total_questions, "easy");
-
-		setQuestions(newQuestions);
-		setScore(0);
-		setSelectedAnswers([]);
-		setCurrentQuestion(0);
-		setLoading(false);
-	};
-
-	const checkAnswer = (ev) => {
-		// check if answer is correct when answer is clicked
-		if (!quizFinished) {
-			// selected answer
-			const answer = ev.currentTarget.value;
-			// compare with the correct answer
-			const answerCorrect =
-				answer === questions[currentQuestion].correct_answer ? true : false;
-			// if correct increment score by 1
-			if (answerCorrect) {
-				setScore((prev) => prev + 1);
-			}
-			// create the answer object and addit to selected answer array
-			const answerObject = {
-				question: questions[currentQuestion].question,
-				answer,
-				answerCorrect,
-				correct_answer: questions[currentQuestion].correct_answer,
-			};
-			setSelectedAnswers((prev) => [...prev, answerObject]);
-		}
-	};
-
-	const showNextQuestion = () => {
-		// triggers when users click on next question, if its not last question
-		const nextQuestion = currentQuestion + 1;
-
-		if(nextQuestion === total_questions) {
-			setQuizFinished(true);
-
-		}
-		else {
-			setCurrentQuestion(nextQuestion);
-		}
-	};
-
+const App = () => {
+	// const [categories, setCategories] = useState(["Random"])
+	// const categoriesFetched = fetchCategories();
+	// setCategories(categoriesFetched)
 	return (
-		<div className="App">
+		<div>
 			<h1>React Quiz App</h1>
-			{quizFinished || selectedAnswers.length === total_questions ? (
-				<button className="start" onClick={startQuiz}>
-					Start Quiz
-				</button>
-			) : null}
-			{!quizFinished ? <p className="score">Score: {score}</p> : null}
-			{loading ? <p className="loadbar">Loading questions ...</p> : null}
-			{!loading && !quizFinished ? (
-				<QuestionBoard
-					answers={questions[currentQuestion].answers}
-					question={questions[currentQuestion].question.replace()}
-					questionNumber={currentQuestion + 1}
-					selectedAnswer={
-						selectedAnswers ? selectedAnswers[currentQuestion] : undefined
-					}
-					callBack={checkAnswer}
-					totalQuestions={total_questions}
-				/>
-			) : null}
-			{!quizFinished &&
-			!loading &&
-			selectedAnswers.length === currentQuestion + 1 &&
-			currentQuestion !== total_questions - 1 ? (
-				<button className="next" onClick={showNextQuestion}>
-					Next Question
-				</button>
-			) : null}
+			<h3>
+				Please set the following preferences for the quiz or leave it to default
+				for random assignment
+			</h3>
+			{/* drop box here */}
+			<label htmlFor="category">
+				<h4>Category</h4>
+			</label>
+			<CategoryDropDown />
+			<h4>Difficulty</h4>
+			{/* Number input here */}
+			<h4>Number Of Questions</h4>
+			{/* Radio buttons here */}
+
+			{/* conditionally render Quiz component */}
+			<Quiz />
 		</div>
 	);
-}
+};
 
+const CategoryDropDown = () => {
+	const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true)
+
+	useEffect(() => {
+		async function getItems() {
+			const data = await fetchCategories();
+            setCategories(data)
+            setLoading(false)
+		}
+        getItems();
+	}, []);
+
+	return (
+		<select disabled={loading} name="category">
+            <option key={"Random"} value={"Random"}>Random</option>
+			{categories.map(({ id, name }) => (
+				<option key={id} value={name}>
+					{name}
+				</option>
+			))}
+		</select>
+	);
+};
 export default App;
