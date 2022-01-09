@@ -12,3 +12,9 @@ export const fetchQuizQuestions = async (amount, difficulty) => {
         question: question.question.replace(/&quot;/g, '\"').replace(/&#039;/g, "\'")
 	}));
 };
+
+export const fetchCategories = async () => {
+    const endPoint = "https://opentdb.com/api_category.php"
+    const data = await (await fetch(endPoint)).json();
+    console.log(data.trivia_categories);
+}
