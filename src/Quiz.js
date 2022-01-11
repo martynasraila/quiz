@@ -4,13 +4,14 @@ import QuestionBoard from "./QuestionBoard";
 import { useState } from "react";
 import { fetchQuizQuestions } from "./API";
 
-function Quiz() {
+function Quiz(props) {
 	const [loading, setLoading] = useState(false);
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [questions, setQuestions] = useState([]);
 	const [selectedAnswers, setSelectedAnswers] = useState([]);
 	const [score, setScore] = useState(0);
 	const [quizFinished, setQuizFinished] = useState(true);
+	// const [categoriesLoaded, setCategoriesLoaded] = useState(props.categoriesLoaded)
 
 	const total_questions = 50;
 
@@ -61,10 +62,9 @@ function Quiz() {
 			setCurrentQuestion(nextQuestion);
 		}
 	};
-
 	return (
 		<div className="Quiz">
-			{quizFinished || selectedAnswers.length === total_questions ? (
+			{props.categoriesLoaded && (quizFinished || selectedAnswers.length === total_questions) ? (
 				<button className="start" onClick={startQuiz}>
 					Start Quiz
 				</button>
