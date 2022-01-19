@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./Quiz.css";
 import QuestionBoard from "./QuestionBoard";
 import { useState } from "react";
@@ -10,18 +9,14 @@ function Quiz(props) {
 	const [questions, setQuestions] = useState([]);
 	const [selectedAnswers, setSelectedAnswers] = useState([]);
 	const [score, setScore] = useState(0);
-	const [quizFinished, setQuizFinished] = useState(true);
+	// const [quizFinished, setQuizFinished] = useState(true);
 	// const [categoriesLoaded, setCategoriesLoaded] = useState(props.categoriesLoaded)
-
-	const total_questions = 50;
 
 	const startQuiz = async () => {
 		// making a call to quiz api to fetch questions and answers
 		setLoading(true);
-		setQuizFinished(false);
-
-		const newQuestions = await fetchQuizQuestions(total_questions, "easy");
-
+		props.setQuizFinished(false);
+		const newQuestions = await fetchQuizQuestions(props.numOfQuestions, props.difficulty, props.category);
 		setQuestions(newQuestions);
 		setScore(0);
 		setSelectedAnswers([]);
@@ -31,7 +26,7 @@ function Quiz(props) {
 
 	const checkAnswer = (ev) => {
 		// check if answer is correct when answer is clicked
-		if (!quizFinished) {
+		if (!props.quizFinished) {
 			// selected answer
 			const answer = ev.currentTarget.value;
 			// compare with the correct answer
@@ -56,22 +51,22 @@ function Quiz(props) {
 		// triggers when users click on next question, if its not last question
 		const nextQuestion = currentQuestion + 1;
 
-		if (nextQuestion === total_questions) {
-			setQuizFinished(true);
+		if (nextQuestion === props.numOfQuestions) {
+			props.setQuizFinished(true);
 		} else {
 			setCurrentQuestion(nextQuestion);
 		}
 	};
 	return (
 		<div className="Quiz">
-			{props.categoriesLoaded && (quizFinished || selectedAnswers.length === total_questions) ? (
+			{props.categoriesLoaded && (props.quizFinished || selectedAnswers.length === props.numOfQuestions) ? (
 				<button className="start" onClick={startQuiz}>
 					Start Quiz
 				</button>
 			) : null}
-			{!quizFinished ? <p className="score">Score: {score}</p> : null}
+			{!props.quizFinished ? <p className="score">Score: {score}</p> : null}
 			{loading ? <p className="loadbar">Loading questions ...</p> : null}
-			{!loading && !quizFinished ? (
+			{!loading && !props.quizFinished ? (
 				<QuestionBoard
 					answers={questions[currentQuestion].answers}
 					question={questions[currentQuestion].question}
@@ -80,13 +75,13 @@ function Quiz(props) {
 						selectedAnswers ? selectedAnswers[currentQuestion] : undefined
 					}
 					callBack={checkAnswer}
-					totalQuestions={total_questions}
+					totalQuestions={props.numOfQuestions}
 				/>
 			) : null}
-			{!quizFinished &&
+			{!props.quizFinished &&
 			!loading &&
 			selectedAnswers.length === currentQuestion + 1 &&
-			currentQuestion !== total_questions - 1 ? (
+			currentQuestion !== props.numOfQuestions - 1 ? (
 				<button className="next" onClick={showNextQuestion}>
 					Next Question
 				</button>
