@@ -23,6 +23,7 @@ const Form = (props) => {
 						type="radio"
 						value="easy"
 						name="difficulty"
+						checked={props.difficulty === "easy"}
 						onChange={props.onDifficultyChange}
 					/>
 					Easy
@@ -32,7 +33,7 @@ const Form = (props) => {
 						type="radio"
 						value="medium"
 						name="difficulty"
-						defaultChecked
+						checked={props.difficulty === "medium"}
 						onChange={props.onDifficultyChange}
 					/>
 					Medium
@@ -42,6 +43,7 @@ const Form = (props) => {
 						type="radio"
 						value="hard"
 						name="difficulty"
+						checked={props.difficulty === "hard"}
 						onChange={props.onDifficultyChange}
 					/>
 					Hard
