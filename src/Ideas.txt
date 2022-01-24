@@ -1,0 +1,7 @@
+Add styling
+    Ideas: 
+        *Add percentage circle for score when showing results
+        *Add image for each chosen category 
+        *Add preloader
+        *Add highscores feature
+        *Index page should consist of three buttons: Play, Customize, HighScores

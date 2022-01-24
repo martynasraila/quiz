@@ -1,0 +1,169 @@
+:root {
+	/* dark shades of primary color*/
+	/* --clr-primary-1: hsl(205, 86%, 17%);
+	--clr-primary-2: hsl(205, 77%, 27%);
+	--clr-primary-3: hsl(205, 72%, 37%); */
+	--clr-primary-4: #80ddbe;
+	/* primary/main color */
+	--clr-primary-5: #5cb3db;
+	/* lighter shades of primary color */
+	/* --clr-primary-6: hsl(205, 89%, 70%);
+	--clr-primary-7: hsl(205, 90%, 76%);
+	--clr-primary-8: hsl(205, 86%, 81%);
+	--clr-primary-9: hsl(205, 90%, 88%);
+	--clr-primary-10: hsl(205, 100%, 96%); */
+	/* darkest grey - used for headings */
+	/* --clr-grey-1: hsl(209, 61%, 16%);
+	--clr-grey-2: hsl(211, 39%, 23%);
+	--clr-grey-3: hsl(209, 34%, 30%);
+	--clr-grey-4: hsl(209, 28%, 39%); */
+	/* grey used for paragraphs */
+	/* --clr-grey-5: hsl(210, 22%, 49%);
+	--clr-grey-6: hsl(209, 23%, 60%);
+	--clr-grey-7: hsl(211, 27%, 70%);
+	--clr-grey-8: hsl(210, 31%, 80%);
+	--clr-grey-9: hsl(212, 33%, 89%);
+	--clr-grey-10: hsl(210, 36%, 96%);
+	--clr-white: #fff;
+	--clr-red-dark: hsl(360, 67%, 44%);
+	--clr-red-light: hsl(360, 71%, 66%);
+	--clr-green-dark: hsl(125, 67%, 44%);
+	--clr-green-light: hsl(125, 71%, 66%);
+	--clr-black: #222;
+
+	--transition: all 0.3s linear;
+	--spacing: 0.1rem;
+	--radius: 0.75rem;
+	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	--max-width: 1170px;
+	--fixed-width: 620px; */
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+div .hero {
+	min-height: 100vh;
+	min-width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(
+		to right top,
+		var(--clr-primary-5),
+		var(--clr-primary-4)
+	);
+	/* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
+	/* linear-gradient(0.12turn, #3f87a6, #ebf8e1, #f69d3c) */
+}
+
+div .container {
+	background: white;
+	min-height: 80vh;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(
+		to right bottom,
+		rgba(255, 255, 255, 0.7),
+		rgba(255, 255, 255, 0.3)
+	);
+	border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    visibility: hidden;
+    
+}
+
+div .active.container{
+    z-index: 2;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+     -ms-animation: fadein 2s; /* Internet Explorer */
+      -o-animation: fadein 2s; /* Opera < 12.1 */
+         animation: fadein 2s;
+    visibility: visible;
+}
+
+.circle1,
+.circle2 {
+	background: white;
+	background: linear-gradient(
+		to right bottom,
+		rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0.3)
+	);
+    height: 15rem;
+    width: 15rem;
+    position: absolute;  
+    border-radius: 50%;
+}
+
+.circle1 {
+    top:4%;
+    right: 17%;
+}
+.circle2 {
+    bottom: 4%;
+    left: 14%;  
+}
+
+button {
+	border: none;
+	padding: 3rem;
+    border-radius: 1rem;
+}
+
+.startbtns {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+}
+
+.startbtns.active {
+    visibility: visible;
+}
+
+.startbtns button {
+    /* paddin */
+}
