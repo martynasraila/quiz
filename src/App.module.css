@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Readex+Pro:wght@500&display=swap');
+
 :root {
 	/* dark shades of primary color*/
-	/* --clr-primary-1: hsl(205, 86%, 17%);
-	--clr-primary-2: hsl(205, 77%, 27%);
-	--clr-primary-3: hsl(205, 72%, 37%); */
-	--clr-primary-4: #80ddbe;
+	--clr-primary-1: #C9C9C9;
+	--clr-primary-2: #A3D1C3;
+	--clr-primary-3: #75D9C6;
+	--clr-primary-4: #46D9E3;
 	/* primary/main color */
-	--clr-primary-5: #5cb3db;
+	--clr-primary-5: #2FCBFA;
 	/* lighter shades of primary color */
 	/* --clr-primary-6: hsl(205, 89%, 70%);
 	--clr-primary-7: hsl(205, 90%, 76%);
@@ -31,13 +33,22 @@
 	--clr-green-light: hsl(125, 71%, 66%);
 	--clr-black: #222;
 
-	--transition: all 0.3s linear;
 	--spacing: 0.1rem;
 	--radius: 0.75rem;
 	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 	--max-width: 1170px;
 	--fixed-width: 620px; */
+	/* transition: ; */
+
+}
+
+html *
+{
+   font-size: 1em !important;
+   color: #000 !important;
+   font-family: 'Poppins', sans-serif !important;
+
 }
 
 * {
@@ -87,7 +98,7 @@ div .hero {
 	align-items: center;
 	background: linear-gradient(
 		to right top,
-		var(--clr-primary-5),
+		var(--clr-primary-3),
 		var(--clr-primary-4)
 	);
 	/* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
@@ -111,8 +122,11 @@ div .container {
     z-index: 2;
     backdrop-filter: blur(2rem);
     visibility: hidden;
-    
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-variant: normal;
+    font: 400;
 }
+
 
 div .active.container{
     z-index: 2;
@@ -122,6 +136,7 @@ div .active.container{
       -o-animation: fadein 2s; /* Opera < 12.1 */
          animation: fadein 2s;
     visibility: visible;
+
 }
 
 .circle1,
@@ -149,15 +164,24 @@ div .active.container{
 
 button {
 	border: none;
-	padding: 3rem;
+	padding: 1rem;
     border-radius: 1rem;
+    background: linear-gradient(
+		to right bottom,
+		rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0.6)
+	);
 }
 
 .startbtns {
     position: absolute;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     visibility: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .startbtns.active {
@@ -165,5 +189,29 @@ button {
 }
 
 .startbtns button {
-    /* paddin */
+    /* width: 50%; */
+    min-width: 20%;
+    max-width: 10%;
+    margin-bottom: 2rem;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: 400;
+
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-variant: normal;
+    font: 400;
+    color: rgb(211, 211, 197);
+    background: linear-gradient(to right top, rgb(92, 48, 212), rgb(45, 122, 185));
+    backdrop-filter: blur(2rem);
+    transition: all 0.3s linear;
+    
+    
 }
+
+.startbtns button:hover{
+    /* background: linear-gradient(to right top, rgb(71, 37, 165), rgb(38, 103, 156));
+    color: rgb(245, 245, 241); */
+    
+}
+
+/* create section for score and question numbers, progress */

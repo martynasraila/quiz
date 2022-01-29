@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Form from "./Form";
 import Quiz from "./Quiz";
 import Results from "./Results";
-import "./App.css";
+import styles from "./App.module.css";
 
 const App = () => {
 	const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -65,8 +65,8 @@ const App = () => {
 	const quizRef = useRef();
 
 	return (
-		<div className="hero">
-			<div className={`${contentVisible ? "active " : ""}` + "container"}>
+		<div className={styles.hero}>
+			<div className={`${styles['container'] + " "}  ${contentVisible ? styles['active'] : " "}`}>
 				{quizFinished && !sameSettings ? (
 					<Form
 						setStateOfCategories={setStateOfCategoriesCallBack}
@@ -107,9 +107,9 @@ const App = () => {
 				{/* Restart quiz button -> dialog box: Restart or restart with different settings*/}
 				{/* <Results/> */}
 			</div>
-			<div className="circle1"></div>
-			<div className="circle2"></div>
-			<section className={`${!contentVisible ? "active " : ""}` + "startbtns"}>
+			<div className={styles.circle1}></div>
+			<div className={styles.circle2}></div>
+			<section className={`${styles["startbtns"]+ " "} ${!contentVisible ? styles["active"] : ""}`}>
 				<button onClick={playOnClick}>Play!</button>
 				<button onClick={settingsOnClick}>Change settings</button>
 			</section>

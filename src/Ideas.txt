@@ -5,3 +5,6 @@ Add styling
         *Add preloader
         *Add highscores feature
         *Index page should consist of three buttons: Play, Customize, HighScores
+        *Question progress bar
+        *Status bar with underline: questions, score``
+        *Work with local storage
