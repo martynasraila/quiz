@@ -1,7 +1,7 @@
 Add styling
     Ideas: 
         *Show correct/incorrect answer
-        *Status bar with underline: questions, score``
+        Done: *Status bar with underline: questions, score``
         *Question progress bar
         *Rotate svg on hover
         *Sweep in animacija
