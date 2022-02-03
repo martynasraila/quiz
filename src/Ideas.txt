@@ -1,10 +1,14 @@
 Add styling
     Ideas: 
+        *Show correct/incorrect answer
+        *Status bar with underline: questions, score``
+        *Question progress bar
+        *Rotate svg on hover
+        *Sweep in animacija
+        *Ant monitoriaus displays po du atsakymus rodyti kiekvienoj eilej, o mobile sustatyti i stacka
         *Add percentage circle for score when showing results
         *Add image for each chosen category 
         *Add preloader
         *Add highscores feature
         *Index page should consist of three buttons: Play, Customize, HighScores
-        *Question progress bar
-        *Status bar with underline: questions, score``
         *Work with local storage

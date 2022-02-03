@@ -56,18 +56,23 @@ const App = () => {
 	const playOnClick = () => {
 		setContentVisible(true);
 		restartWithSameSettings();
-	}
+	};
 	const settingsOnClick = () => {
 		setContentVisible(true);
 		restartWithDifferentSettings();
-	}
+	};
 	// add reference to Quiz child component to call the start game function
 	const quizRef = useRef();
 
 	return (
 		<div className={styles.hero}>
-			<div className={`${styles['container'] + " "}  ${contentVisible ? styles['active'] : " "}`}>
-				{quizFinished && !sameSettings ? (
+			<div
+				className={`${styles["container"] + " "}  ${
+					contentVisible ? styles["active"] : " "
+				}`}
+				// className={styles.container + " " + styles.active}
+			>
+				{contentVisible && (quizFinished && !sameSettings) ? (
 					<Form
 						setStateOfCategories={setStateOfCategoriesCallBack}
 						onDifficultyChange={onDifficultyChange}
@@ -106,13 +111,24 @@ const App = () => {
 				{showResults ? <Results selectedAnswers={selectedAnswers} /> : null}
 				{/* Restart quiz button -> dialog box: Restart or restart with different settings*/}
 				{/* <Results/> */}
+			<section
+				className={`${styles["startbtns"] + " "} ${
+					!contentVisible ? styles["active"] : ""
+				}`}
+			>
+				<div className={styles["play-button"]} onClick={playOnClick}>
+					<h2>Play!</h2>
+					{/* <span className={styles.img}></span> */}
+					<img src={require("./img/play-svgrepo-com (2).svg").default}></img>
+				</div>
+				<div className={styles["settings-button"]} onClick={settingsOnClick}>
+					<h2>Change settings</h2>
+					<img src={require("./img/settings-svgrepo-com.svg").default}></img>
+				</div>
+			</section>
 			</div>
 			<div className={styles.circle1}></div>
 			<div className={styles.circle2}></div>
-			<section className={`${styles["startbtns"]+ " "} ${!contentVisible ? styles["active"] : ""}`}>
-				<button onClick={playOnClick}>Play!</button>
-				<button onClick={settingsOnClick}>Change settings</button>
-			</section>
 		</div>
 	);
 };

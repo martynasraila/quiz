@@ -1,4 +1,4 @@
-import "./Quiz.css";
+import styles from "./Quiz.module.css";
 import QuestionBoard from "./QuestionBoard";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { fetchQuizQuestions } from "./API";
@@ -10,22 +10,22 @@ const Quiz = forwardRef((props, ref) => {
 	const [score, setScore] = useState(0);
 
 	useImperativeHandle(ref, () => ({
-		async startQuiz () {
-		// making a call to quiz api to fetch questions and answers
-		setLoading(true);
-		props.setQuizFinished(false);
-		const newQuestions = await fetchQuizQuestions(
-			props.numOfQuestions,
-			props.difficulty,
-			props.category
-		);
-		setQuestions(newQuestions);
-		setScore(0);
-		props.setSelectedAnswers([]);
-		setCurrentQuestion(0);
-		setLoading(false);
-	}}));
-	
+		async startQuiz() {
+			// making a call to quiz api to fetch questions and answers
+			setLoading(true);
+			props.setQuizFinished(false);
+			const newQuestions = await fetchQuizQuestions(
+				props.numOfQuestions,
+				props.difficulty,
+				props.category
+			);
+			setQuestions(newQuestions);
+			setScore(0);
+			props.setSelectedAnswers([]);
+			setCurrentQuestion(0);
+			setLoading(false);
+		},
+	}));
 
 	const checkAnswer = (ev) => {
 		if (!props.quizFinished) {
@@ -61,7 +61,7 @@ const Quiz = forwardRef((props, ref) => {
 		}
 	};
 	return (
-		<div className="Quiz">
+		<div className={styles.quiz}>
 			{props.categoriesLoaded &&
 			(props.quizFinished ||
 				props.selectedAnswers.length === props.numOfQuestions) ? (
@@ -69,20 +69,31 @@ const Quiz = forwardRef((props, ref) => {
 					Start Quiz
 				</button>
 			) : null}
-			{!props.quizFinished ? <p className="score">Score: {score}</p> : null}
-			{loading ? <p className="loadbar">Loading questions ...</p> : null}
-			{!loading && !props.quizFinished ? 	(
+			{!props.quizFinished ? (
+				<div className={styles["status-bar"]}>
+					<div className={styles.question}>
+						<p>
+							Question: {currentQuestion + 1} / {props.numOfQuestions}
+						</p>
+						<div className={styles["progress-bar"]}></div>
+					<p className={styles.score}>Score: {score}</p>{" "}
+					</div>
+					<div className={styles.underline}></div>
+				</div>
+			) : null}
+			{loading ? (
+				<h2 className={styles.loadbar}>Loading questions ...</h2>
+			) : null}
+			{!loading && !props.quizFinished ? (
 				<QuestionBoard
 					answers={questions[currentQuestion].answers}
 					question={questions[currentQuestion].question}
-					questionNumber={currentQuestion + 1}
 					selectedAnswer={
 						props.selectedAnswers
 							? props.selectedAnswers[currentQuestion]
 							: undefined
 					}
 					callBack={checkAnswer}
-					totalQuestions={props.numOfQuestions}
 				/>
 			) : null}
 			{!props.quizFinished &&
@@ -95,6 +106,6 @@ const Quiz = forwardRef((props, ref) => {
 			) : null}
 		</div>
 	);
-})
+});
 
 export default Quiz;

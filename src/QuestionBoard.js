@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./QuestionBoard.module.css"
 // props to be passed:
 // question nr
 // question
@@ -10,15 +10,12 @@ import React from "react";
 
 const QuestionBoard = (props) => {
 	return (
-		<div>
-			<p className="question">
-				Question: {props.questionNumber} / {props.totalQuestions}
-			</p>
-			<p>{props.question}</p>
-			<div>
+		<div className={styles.container}>
+			<p className={styles.question}>{props.question}</p>
+			<div className={styles.answers}>
 				{props.answers.map((answer, answerNr) => {
 					return (
-						<div className="answer" key={answer}>
+						<div className={styles.answer} key={answer}>
 							<button disabled={props.selectedAnswer} value={answer} onClick={props.callBack}>
 								<span>
 									{answerNr + 1}. {answer}
