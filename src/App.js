@@ -118,12 +118,11 @@ const App = () => {
 			>
 				<div className={styles["play-button"]} onClick={playOnClick}>
 					<h2>Play!</h2>
-					{/* <span className={styles.img}></span> */}
-					<img src={require("./img/play-svgrepo-com (2).svg").default}></img>
+					<img src={require("./img/play-svgrepo-com (2).svg").default} alt="play-icon"></img>
 				</div>
 				<div className={styles["settings-button"]} onClick={settingsOnClick}>
 					<h2>Change settings</h2>
-					<img src={require("./img/settings-svgrepo-com.svg").default}></img>
+					<img src={require("./img/settings-svgrepo-com.svg").default} alt="settings-icon"></img>
 				</div>
 			</section>
 			</div>

@@ -14,6 +14,10 @@
 	--clr-primary-9: #bae4fccb;
 	--clr-primary-10: #25ffba5e;
 	--clr-primary-11: #c19dfa4b;
+	/* headings and paragraphs */
+	--clr-primary-12: #426696;
+	--clr-primary-13: #658ec6;
+	--clr-primary-14: #426696;
 	/* lighter shades of primary color */
 	/* --clr-primary-6: hsl(205, 89%, 70%);
 	/* darkest grey - used for headings */
@@ -53,6 +57,24 @@ html * {
 	padding: 0;
 	box-sizing: border-box;
 }
+
+h1 {
+	color: var(--clr-primary-12);
+	font-weight: 600;
+	font-size: 3rem;
+	opacity: 0.8;
+}
+h2,
+p {
+  color: var(--clr-primary-14);
+  font-weight: 500;
+  opacity: 0.8;
+}
+h3 {
+	color: var(--clr-primary-14);
+	font-weight: 500;
+	opacity: 0.8;
+  }
 
 @keyframes fadein {
 	from {
@@ -102,8 +124,6 @@ div .hero {
 		var(--clr-primary-3),
 		var(--clr-primary-4)
 	);
-	/* background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); */
-	/* linear-gradient(0.12turn, #3f87a6, #ebf8e1, #f69d3c) */
 }
 
 div .container {
@@ -116,7 +136,7 @@ div .container {
 	align-items: center;
 	background: linear-gradient(
 		to right bottom,
-		rgba(255, 255, 255, 0.6),
+		rgba(255, 255, 255, 0.7),
 		rgba(255, 255, 255, 0.3)
 	);
 	border-radius: 2rem;
@@ -133,7 +153,7 @@ div .container {
 	width: 100%;
 }
 
-div .active.container {
+div .container.active {
 	z-index: 2;
 	min-height: 80vh;
 	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
@@ -142,7 +162,7 @@ div .active.container {
 	-o-animation: fadein 2s; /* Opera < 12.1 */
 	animation: fadein 2s;
 	min-width: 50%;
-	max-width: 80%;
+	/* max-width: 80%; */
 }
 
 .circle1,
@@ -161,11 +181,11 @@ div .active.container {
 
 .circle1 {
 	top: 4%;
-	right: 17%;
+	right: 10%;
 }
 .circle2 {
-	bottom: 4%;
-	left: 14%;
+	bottom: 7%;
+	left: 5%;
 }
 /* .underline {
 	height: 0.25rem;
@@ -183,14 +203,9 @@ button {
 	min-width: fit-content;
 	min-width: 40%;
 	border-radius: 2rem;
-	font-size: 1rem;
+	/* font-size: 1rem; */
 	padding: 1rem 1rem 1rem 1rem;
 	line-height: 1rem;
-	background: linear-gradient(
-		to right bottom,
-		rgba(255, 255, 255, 0.8),
-		rgba(255, 255, 255, 0.6)
-	);
 }
 
 .startbtns {
@@ -227,39 +242,33 @@ button {
 	justify-content: center;
 	white-space: nowrap;
 	letter-spacing: 0.05rem;
-	color: white;
+	/* color: white; */
 	border-radius: 1.5rem;
-	box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2), 0 0 0 0 rgba(255, 255, 255, 0.2);
+	/* box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2), 0 0 0 0 rgba(255, 255, 255, 0.2); */
+	box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
 	transition: transform 0.5s ease, box-shadow 0.5s ease;
 	position: relative;
-	
-
 }
 
 .startbtns div::after {
 	content: "";
 	width: 100%;
-	height: 500%;
-	/* margin: 1rem 1rem 1rem 1rem; */
-	/* padding: 0.25rem 0.25rem 0.25rem 0.25rem; */
+	padding-top: 100%;
 	position: absolute;
-	/* top: -5rem;
-	left: -5rem; */
 	background-color: var(--clr-primary-1);
 	background: linear-gradient(
 		225deg,
-		var(--clr-primary-10) 0%,
-		var(--clr-primary-8) 50%,
-		var(--clr-primary-7) 100%
+		/* var(--clr-primary-8) 50%, */
+		var(--clr-primary-7) 0%,
+		var(--clr-primary-10) 100%
 	);
 	z-index: -1;
 	transition: transform 0.5s ease;
-	/* backdrop-filter: blur(2rem); */
 }
 .startbtns div:hover {
 	transform: translate(0, -0.25rem);
-	box-shadow: 0.5rem -0.5rem 0.5rem 0 var(--clr-primary-8), -0.5rem 0.5rem 0.5rem 0 var(--clr-primary-8);
-
+	box-shadow: 0.5rem -0.5rem 0.5rem 0 var(--clr-primary-8),
+		-0.5rem 0.5rem 0.5rem 0 var(--clr-primary-8);
 }
 .startbtns div:hover::after {
 	transform: rotate(150deg);
@@ -282,9 +291,10 @@ button {
 	margin: 0 1rem 0 1rem;
 	padding: 0.5rem;
 	transform: rotate(0);
-	filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(144deg) brightness(100%) contrast(101%);
+	filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(144deg)
+		brightness(100%) contrast(101%);
 	/* filter: invert(29%) sepia(41%) saturate(401%) hue-rotate(133deg) */
-		/* brightness(99%) contrast(84%); */
+	/* brightness(99%) contrast(84%); */
 	transition: transform 0.5s ease;
 }
 
@@ -304,6 +314,7 @@ button {
 		flex-direction: row;
 	}
 	div .container {
-		max-width: 50%;
+		min-width: 40%;
+		max-width: 60%;
 	}
 }

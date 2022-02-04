@@ -60,6 +60,7 @@ const Quiz = forwardRef((props, ref) => {
 			setCurrentQuestion(nextQuestion);
 		}
 	};
+
 	return (
 		<div className={styles.quiz}>
 			{props.categoriesLoaded &&
@@ -71,21 +72,20 @@ const Quiz = forwardRef((props, ref) => {
 			) : null}
 			{!props.quizFinished ? (
 				<div className={styles["status-bar"]}>
-					<div className={styles.question}>
-						<p>
+					<div>
+						<p className={styles["question-nr"]}>
 							Question: {currentQuestion + 1} / {props.numOfQuestions}
 						</p>
-						<div className={styles["progress-bar"]}></div>
-					<p className={styles.score}>Score: {score}</p>{" "}
+						<p className={styles.score}>Score: {score}</p>{" "}
 					</div>
-					<div className={styles.underline}></div>
+					<div className={styles["progress-bar"]}></div>
+					{/* <div className={styles.underline}></div> */}
 				</div>
 			) : null}
-			{loading ? (
-				<h2 className={styles.loadbar}>Loading questions ...</h2>
-			) : null}
+			{loading ? <span className={styles.loadbar} /> : null}
 			{!loading && !props.quizFinished ? (
 				<QuestionBoard
+					className={styles["question-board"]}
 					answers={questions[currentQuestion].answers}
 					question={questions[currentQuestion].question}
 					selectedAnswer={
@@ -96,14 +96,28 @@ const Quiz = forwardRef((props, ref) => {
 					callBack={checkAnswer}
 				/>
 			) : null}
-			{!props.quizFinished &&
+
+			{/* {!props.quizFinished &&
 			!loading &&
 			props.selectedAnswers.length === currentQuestion + 1 &&
-			currentQuestion !== props.numOfQuestions - 1 ? (
-				<button className="next" onClick={showNextQuestion}>
-					Next Question
-				</button>
-			) : null}
+			currentQuestion !== props.numOfQuestions - 1 ? ( */}
+			<button
+				className={`${styles.next + " "} ${
+					!props.quizFinished &&
+					!loading &&
+					props.selectedAnswers.length === currentQuestion + 1 &&
+					currentQuestion !== props.numOfQuestions - 1
+						? styles["active"]
+						: ""
+				}`}
+				onClick={showNextQuestion}
+			>
+				<h2>Next Question</h2>
+				<img
+					src={require("./img/next.svg").default}
+					alt="next-icon"
+				></img>
+			</button>
 		</div>
 	);
 });

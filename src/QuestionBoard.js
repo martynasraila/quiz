@@ -1,27 +1,25 @@
 import React from "react";
-import styles from "./QuestionBoard.module.css"
-// props to be passed:
-// question nr
-// question
-// total questions
-// answers
-// selected answer
-// callback
+import styles from "./QuestionBoard.module.css";
+
 
 const QuestionBoard = (props) => {
 	return (
 		<div className={styles.container}>
-			<p className={styles.question}>{props.question}</p>
+			<h2 className={styles.question}>{props.question}</h2>
 			<div className={styles.answers}>
 				{props.answers.map((answer, answerNr) => {
 					return (
-						<div className={styles.answer} key={answer}>
-							<button disabled={props.selectedAnswer} value={answer} onClick={props.callBack}>
-								<span>
-									{answerNr + 1}. {answer}
-								</span>
-							</button>
-						</div>
+						<button
+							disabled={props.selectedAnswer}
+							value={answer}
+							onClick={props.callBack}
+							className={styles.answer}
+							key={answer}
+						>
+							<h3>
+								{answerNr + 1}. {answer}
+							</h3>
+						</button>
 					);
 				})}
 			</div>
