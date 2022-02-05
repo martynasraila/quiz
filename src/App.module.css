@@ -118,7 +118,7 @@ div .hero {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem;
+	padding: 1rem;
 	background: linear-gradient(
 		to right top,
 		var(--clr-primary-3),
@@ -127,8 +127,8 @@ div .hero {
 }
 
 div .container {
-	/* min-height: 80vh;
-	max-height: 95vh; */
+	min-width: 40%;
+	max-width: 95%;
 	min-height: 40vh;
 	display: flex;
 	flex-direction: column;
@@ -274,8 +274,6 @@ button {
 	transform: rotate(150deg);
 }
 .startbtns h2 {
-	/* overflow: hidden; */
-
 	padding-left: auto;
 	padding-right: auto;
 	font-size: large;
@@ -283,6 +281,7 @@ button {
 	margin-left: 1rem;
 	margin-right: auto;
 	color: white;
+	opacity: 1;
 }
 
 .startbtns img {

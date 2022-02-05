@@ -1,9 +1,8 @@
 Add styling
     Ideas: 
-        *Show correct/incorrect answer + add icon img if correct or incorrect
-        Done: *Status bar with underline: questions, score``
         *Question progress bar
-        Done: *Rotate svg on hover
+        *Show correct/incorrect answer + add icon img if correct or incorrect
+        *Display category and difficulty in status bar
         *Sweep in animacija
         *Ant monitoriaus displays po du atsakymus rodyti kiekvienoj eilej, o mobile sustatyti i stacka
         *Add percentage circle for score when showing results
@@ -12,3 +11,5 @@ Add styling
         *Add highscores feature
         *Index page should consist of three buttons: Play, Customize, HighScores
         *Work with local storage
+        Done: *Status bar with underline: questions, score``
+        Done: *Rotate svg on hover

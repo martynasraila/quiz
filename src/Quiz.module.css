@@ -34,7 +34,6 @@
 	/* position: absolute; */
 	/* top: 0; */
 	margin-top: 0;
-	margin-bottom: auto;
 	border-radius: 2rem;
 	align-self: flex-start;
 	justify-self: flex-start;
@@ -52,34 +51,19 @@
 	padding: 1rem;
 }
 
-.progress-bar {
-	width: 80%;
-	height: 30%;
-	border-radius: 1rem;
-	background: linear-gradient(
-		to right top,
-		var(--clr-primary-3) 0%,
-		var(--clr-primary-4) 100%
-	);
-	overflow: hidden;
+.status-bar div {
+	width: 90%;
+	text-align: center;
 }
-
-.progress-bar::after {
-	max-height: 30%;
-}
-
-/* button.next::before {
-  content: "";
-} */
 
 button.next {
 	overflow: hidden;
 	min-width: 20%;
 	align-self: center;
 	max-height: 30%;
-	margin: 1rem 1rem 1rem 1rem;
-	margin-bottom: 10%;
-	margin-top: auto;
+	/* margin: 1rem 1rem 1rem 1rem; */
+	margin-top: 5%;
+	margin-bottom: 5%;
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	display: flex;
 	flex-direction: row;
@@ -92,7 +76,7 @@ button.next {
 	color: white;
 	border-radius: 1.5rem;
 	box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
-	transition: all 0.3s ease;
+	/* transition: all 0.3s ease; */
 	transition: transform 0.5s ease, box-shadow 0.5s ease;
 	position: relative;
 	background: transparent;
@@ -120,15 +104,15 @@ button.next::after {
 }
 .next:hover {
 	transform: translate(0, -0.25rem);
-	box-shadow: 0.5rem -0.5rem 0.5rem 0 var(--clr-primary-8),
-		-0.5rem 0.5rem 0.5rem 0 var(--clr-primary-8);
+	box-shadow: 6px 6px 20px var(--clr-primary-8),
+	-6px -6px 20px 0 var(--clr-primary-8);
 }
 .next:hover::after {
 	transform: rotate(180deg);
 }
 .next img {
-	height: 2.5rem;
-	width: 2.5rem;
+	height: 3rem;
+	width: 3rem;
 	margin: 0 1rem 0 1rem;
 	padding: 0.5rem;
 	transform: rotate(0);
@@ -149,6 +133,11 @@ button.next::after {
 	margin-right: auto;
 	color: white;
   font-weight: 600;
+  opacity: 1;
+}
+
+.next:hover img {
+	transform: rotate(360deg);
 }
 
 /* For the spinner */

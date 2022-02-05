@@ -4,7 +4,10 @@
 	justify-content: center;
 	align-items: center;
 	margin: 1rem 1rem 1rem 1rem;
-    /* margin-top: 40% */
+    /* to center the container */
+	margin-top: auto;
+	margin-bottom: auto;
+	padding-top: 1rem;
 }
 
 .question {

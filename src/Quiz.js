@@ -1,5 +1,6 @@
 import styles from "./Quiz.module.css";
 import QuestionBoard from "./QuestionBoard";
+import ProgressBar from "./ProgressBar.js";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { fetchQuizQuestions } from "./API";
 
@@ -47,6 +48,7 @@ const Quiz = forwardRef((props, ref) => {
 				answerChoices: questions[currentQuestion].answers,
 			};
 			props.setSelectedAnswers((prev) => [...prev, answerObject]);
+			
 		}
 	};
 
@@ -60,6 +62,10 @@ const Quiz = forwardRef((props, ref) => {
 			setCurrentQuestion(nextQuestion);
 		}
 	};
+	const calculatePercent = (total, number) => {
+		(props.selectedAnswers.length === currentQuestion + 1) && number++;
+		return (parseInt(number) / parseInt(total)) * 100
+	}
 
 	return (
 		<div className={styles.quiz}>
@@ -72,14 +78,13 @@ const Quiz = forwardRef((props, ref) => {
 			) : null}
 			{!props.quizFinished ? (
 				<div className={styles["status-bar"]}>
+					<p className={styles.score}>Score: {score}</p>{" "}
 					<div>
 						<p className={styles["question-nr"]}>
 							Question: {currentQuestion + 1} / {props.numOfQuestions}
 						</p>
-						<p className={styles.score}>Score: {score}</p>{" "}
+						<ProgressBar percentage={calculatePercent(props.numOfQuestions, currentQuestion)}/>
 					</div>
-					<div className={styles["progress-bar"]}></div>
-					{/* <div className={styles.underline}></div> */}
 				</div>
 			) : null}
 			{loading ? <span className={styles.loadbar} /> : null}
@@ -114,7 +119,7 @@ const Quiz = forwardRef((props, ref) => {
 			>
 				<h2>Next Question</h2>
 				<img
-					src={require("./img/next.svg").default}
+					src={require("./img/next-svgrepo-com (1).svg").default}
 					alt="next-icon"
 				></img>
 			</button>
