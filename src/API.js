@@ -15,6 +15,7 @@ export const fetchQuizQuestions = async (amount, difficulty, category) => {
 			),
 			he.decode(question.correct_answer),
 		]),
+		correct_answer: he.decode(question.correct_answer),
 		question: he.decode(question.question),
 	}));
 };
