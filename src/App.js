@@ -72,7 +72,7 @@ const App = () => {
 				}`}
 				// className={styles.container + " " + styles.active}
 			>
-				{contentVisible && (quizFinished && !sameSettings) ? (
+				{contentVisible && quizFinished && !sameSettings ? (
 					<Form
 						setStateOfCategories={setStateOfCategoriesCallBack}
 						onDifficultyChange={onDifficultyChange}
@@ -81,6 +81,7 @@ const App = () => {
 						categorySelected={categorySelected}
 						numOfQuestions={numOfQuestions}
 						difficulty={difficulty}
+						playClick={playOnClick}
 					/>
 				) : null}
 				<Quiz
@@ -111,20 +112,26 @@ const App = () => {
 				{showResults ? <Results selectedAnswers={selectedAnswers} /> : null}
 				{/* Restart quiz button -> dialog box: Restart or restart with different settings*/}
 				{/* <Results/> */}
-			<section
-				className={`${styles["startbtns"] + " "} ${
-					!contentVisible ? styles["active"] : ""
-				}`}
-			>
-				<div className={styles["play-button"]} onClick={playOnClick}>
-					<h2>Play!</h2>
-					<img src={require("./img/play-svgrepo-com (2).svg").default} alt="play-icon"></img>
-				</div>
-				<div className={styles["settings-button"]} onClick={settingsOnClick}>
-					<h2>Change settings</h2>
-					<img src={require("./img/settings-svgrepo-com.svg").default} alt="settings-icon"></img>
-				</div>
-			</section>
+				<section
+					className={`${styles["startbtns"] + " "} ${
+						!contentVisible ? styles["active"] : ""
+					}`}
+				>
+					<button className={styles["startbtn"]} onClick={playOnClick}>
+						<h2>Start Quiz!</h2>
+						<img
+							src={require("./img/play-svgrepo-com (2).svg").default}
+							alt="play-icon"
+						></img>
+					</button>
+					<button className={styles["startbtn"]} onClick={settingsOnClick}>
+						<h2>Change settings</h2>
+						<img
+							src={require("./img/settings-svgrepo-com.svg").default}
+							alt="settings-icon"
+						></img>
+					</button>
+				</section>
 			</div>
 			<div className={styles.circle1}></div>
 			<div className={styles.circle2}></div>

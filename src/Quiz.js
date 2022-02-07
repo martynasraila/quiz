@@ -69,13 +69,7 @@ const Quiz = forwardRef((props, ref) => {
 
 	return (
 		<div className={styles.quiz}>
-			{props.categoriesLoaded &&
-			(props.quizFinished ||
-				props.selectedAnswers.length === props.numOfQuestions) ? (
-				<button className="start" onClick={ref.current.startQuiz}>
-					Start Quiz
-				</button>
-			) : null}
+			
 			{!props.quizFinished ? (
 				<div className={styles["status-bar"]}>
 					<p className={styles.score}>Score: {score}</p>{" "}
@@ -101,11 +95,6 @@ const Quiz = forwardRef((props, ref) => {
 					callBack={checkAnswer}
 				/>
 			) : null}
-
-			{/* {!props.quizFinished &&
-			!loading &&
-			props.selectedAnswers.length === currentQuestion + 1 &&
-			currentQuestion !== props.numOfQuestions - 1 ? ( */}
 			<button
 				className={`${styles.next + " "} ${
 					!props.quizFinished &&

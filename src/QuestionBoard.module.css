@@ -37,7 +37,7 @@
 
 @media (min-width: 1000px) {
 	.answers {
-		align-items: center;
+		align-items: stretch;
 		justify-content: center;
 		flex-direction: row;
 		flex-wrap: wrap;

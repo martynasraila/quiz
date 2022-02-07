@@ -1,61 +1,76 @@
 import { useEffect, useState } from "react";
 import { fetchCategories } from "./API";
+import styles from "./Form.module.css";
 
 const Form = (props) => {
 	return (
-		<div>
-			<h3>
+		<div className={styles["form-container"]}>
+			<h3 className={styles["form-info"]}>
 				Please set the following preferences for the quiz or leave it to default
 				for random assignment
 			</h3>
-			<label htmlFor="category">
-				<h4>Category</h4>
-			</label>
-			<CategoryDropDown
-				setStateOfCategories={props.setStateOfCategories}
-				categorySelected={props.categorySelected}
-				changeCategory={props.changeCategory}
-			/>
-			<h4>Difficulty</h4>
-			<div>
-				<label>
-					<input
-						type="radio"
-						value="easy"
-						name="difficulty"
-						checked={props.difficulty === "easy"}
-						onChange={props.onDifficultyChange}
+			<div className={styles["form"]}>
+				<div className={styles["form-row"]}>
+					<label htmlFor="category"><h3>Category</h3></label>
+					<CategoryDropDown
+						id="category"
+						setStateOfCategories={props.setStateOfCategories}
+						categorySelected={props.categorySelected}
+						changeCategory={props.changeCategory}
 					/>
-					Easy
-				</label>
-				<label>
+				</div>
+				<div className={styles["form-row"]}>
+					<h3>Difficulty</h3>
+					<div className={styles.radiobtns}>
+						<label>
+							<input
+								type="radio"
+								value="easy"
+								name="difficulty"
+								checked={props.difficulty === "easy"}
+								onChange={props.onDifficultyChange}
+							/>
+							Easy
+						</label>
+						<label>
+							<input
+								type="radio"
+								value="medium"
+								name="difficulty"
+								checked={props.difficulty === "medium"}
+								onChange={props.onDifficultyChange}
+							/>
+							Medium
+						</label>
+						<label>
+							<input
+								type="radio"
+								value="hard"
+								name="difficulty"
+								checked={props.difficulty === "hard"}
+								onChange={props.onDifficultyChange}
+							/>
+							Hard
+						</label>
+					</div>
+				</div>
+				<div className={styles["form-row"]}>
+					<h3>Number Of Questions</h3>
 					<input
-						type="radio"
-						value="medium"
-						name="difficulty"
-						checked={props.difficulty === "medium"}
-						onChange={props.onDifficultyChange}
+						type="number"
+						pattern="[0-9]*"
+						onChange={props.onNumOfQuestionsChange}
+						value={props.numOfQuestions}
 					/>
-					Medium
-				</label>
-				<label>
-					<input
-						type="radio"
-						value="hard"
-						name="difficulty"
-						checked={props.difficulty === "hard"}
-						onChange={props.onDifficultyChange}
-					/>
-					Hard
-				</label>
+				</div>
+				<button className={styles["startbtn"]} onClick={props.playClick}>
+					<h2>Start Quiz!</h2>
+					<img
+						src={require("./img/play-svgrepo-com (2).svg").default}
+						alt="play-icon"
+					></img>
+				</button>
 			</div>
-			<h4>Number Of Questions</h4>
-			<input
-				type="tel"
-				pattern="[0-9]*"
-				onChange={props.onNumOfQuestionsChange}
-				value={props.numOfQuestions}
-			/>
 		</div>
 	);
 };

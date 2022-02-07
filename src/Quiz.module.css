@@ -123,9 +123,6 @@ button.next::after {
 }
 
 .next h2 {
-	/* overflow: hidden; */
-	padding-left: auto;
-	padding-right: auto;
 	font-size: large;
 	font-weight: normal;
 	margin-left: 1rem;
