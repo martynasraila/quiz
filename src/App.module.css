@@ -18,6 +18,7 @@
 	--clr-primary-12: #426696;
 	--clr-primary-13: #658ec6;
 	--clr-primary-14: #426696;
+	--clr-primary-15: rgb(9 31 76 / 80%);
 	/* lighter shades of primary color */
 	/* --clr-primary-6: hsl(205, 89%, 70%);
 	/* darkest grey - used for headings */
@@ -162,7 +163,6 @@ div .container.active {
 	-o-animation: fadein 2s; /* Opera < 12.1 */
 	animation: fadein 2s;
 	min-width: 50%;
-	/* max-width: 80%; */
 }
 
 .circle1,
@@ -187,25 +187,11 @@ div .container.active {
 	bottom: 7%;
 	left: 5%;
 }
-/* .underline {
-	height: 0.25rem;
-	width: 5rem;
-	background: var(--clr-primary-5);
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0;
-	align-self: flex-start;
-	justify-self: flex-start;
-} */
+
 button {
 	border: none;
 	padding: 1rem;
-	min-width: fit-content;
-	min-width: 40%;
 	border-radius: 2rem;
-	/* font-size: 1rem; */
-	padding: 1rem 1rem 1rem 1rem;
-	line-height: 1rem;
 }
 
 .startbtns {
@@ -300,11 +286,6 @@ button {
 .startbtns div:hover img {
 	transform: rotate(360deg);
 	/* transition: transfo 	 	rm 0.5s ease; */
-}
-.play-button {
-}
-
-.settings-button {
 }
 
 /* for larger than mobile */

@@ -7,7 +7,8 @@
     /* to center the container */
 	margin-top: auto;
 	margin-bottom: auto;
-	padding-top: 1rem;
+	padding-top: 0.5rem;
+	width: 100%;
 }
 
 .question {
@@ -15,6 +16,10 @@
 	justify-self: center;
 	align-self: center;
     padding-left: 1rem;
+	padding-right: 1rem;
+	color:var(--clr-primary-15);
+	font-size: 1.25rem;
+	font-weight: 600;
 }
 
 .answers {
@@ -22,41 +27,23 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	width: 100%;
+	min-width: 90%;
+	max-width: 90%;
     margin-top: 0.5rem;
 }
 
-button.answer {
-	padding: 0.5rem 1rem 0.5rem 1rem;
-	/* width: 100%; */
-	text-align: center;
-	width: 80%;
-	max-width: 70%;
-	margin: 1rem;
-	/* color: #426696; */
-	/* background-color: ; */
-	line-height: 1.5;
-	box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
-}
 
-button.answer p {
-	color: #426696;
-	background-color: red;
-	/* line-height: 1.5; */
-}
+
 
 @media (min-width: 1000px) {
 	.answers {
-		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-direction: row;
 		flex-wrap: wrap;
+		margin-top: 2rem;
+		
 	}
 
-	button.answer {
-		padding: 0.5rem 1rem 0.5rem 1rem;
-		text-align: center;
-		max-width: 30%;
-	}
+	
 }

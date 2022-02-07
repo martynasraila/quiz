@@ -1,0 +1,73 @@
+.answer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	padding: 0.5rem;
+	height: 20%;
+	/* min-width: max-content; */
+	width: 100%;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.answer h3 {
+	/* height: 100%; */
+	margin-right: auto;
+	align-self: center;
+	justify-self: center;
+	font-size: 1.25rem;
+	padding: 0.5rem;
+	padding-left: 5%;
+	text-align: left;
+    width: 75%;
+}
+
+.answer img {
+	height: 2rem;
+	width: 2rem;
+	animation: ShiftColor 1s ease forwards;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+
+.answer img.correct {
+	--destColor: invert(63%) sepia(90%) saturate(350%) hue-rotate(94deg)
+		brightness(92%) contrast(86%);
+}
+
+.answer img.incorrect {
+	--destColor: invert(37%) sepia(67%) saturate(1077%) hue-rotate(325deg)
+		brightness(97%) contrast(77%);
+}
+
+@keyframes ShiftColor {
+	0% {
+		filter: invert(95%) sepia(100%) saturate(18%) hue-rotate(337deg)
+			brightness(105%) contrast(106%);
+	}
+	100% {
+		filter: var(--destColor);
+	}
+}
+
+@media (min-width: 1000px) {
+	.answer {
+		text-align: center;
+		height: auto;
+		min-height: 100%;
+		align-items: center;
+		margin-bottom: 3rem;
+		margin-left: 1.5rem;
+        min-width: 40%;
+        max-width: 40%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+	}
+    .answer h3 {
+        width: 70%;
+    }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./QuestionBoard.module.css";
-
+import AnswerButton from "./AnswerButton";
 
 const QuestionBoard = (props) => {
 	return (
@@ -9,17 +9,12 @@ const QuestionBoard = (props) => {
 			<div className={styles.answers}>
 				{props.answers.map((answer, answerNr) => {
 					return (
-						<button
-							disabled={props.selectedAnswer}
-							value={answer}
-							onClick={props.callBack}
-							className={styles.answer}
-							key={answer}
-						>
-							<h3>
-								{answerNr + 1}. {answer}
-							</h3>
-						</button>
+						<AnswerButton
+							callBack={props.callBack}
+							answerNr={answerNr}
+							answer={answer}
+							selectedAnswer={props.selectedAnswer}
+						/>
 					);
 				})}
 			</div>

@@ -80,10 +80,10 @@ const Quiz = forwardRef((props, ref) => {
 				<div className={styles["status-bar"]}>
 					<p className={styles.score}>Score: {score}</p>{" "}
 					<div>
+						<ProgressBar percentage={calculatePercent(props.numOfQuestions, currentQuestion)}/>
 						<p className={styles["question-nr"]}>
 							Question: {currentQuestion + 1} / {props.numOfQuestions}
 						</p>
-						<ProgressBar percentage={calculatePercent(props.numOfQuestions, currentQuestion)}/>
 					</div>
 				</div>
 			) : null}
