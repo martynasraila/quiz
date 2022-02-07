@@ -1,10 +1,10 @@
 Add styling
     Ideas: 
-        *Question progress bar
-        *Show correct/incorrect answer + add icon img if correct or incorrect
+        *Style settings/form
+        *Style the answer buttons + onHover + Show selected
         *Display category and difficulty in status bar
+        *On desktop move status to left
         *Sweep in animacija
-        *Ant monitoriaus displays po du atsakymus rodyti kiekvienoj eilej, o mobile sustatyti i stacka
         *Add percentage circle for score when showing results
         *Add image for each chosen category 
         *Add preloader
@@ -13,3 +13,6 @@ Add styling
         *Work with local storage
         Done: *Status bar with underline: questions, score``
         Done: *Rotate svg on hover
+        Done: *Question progress bar
+        Done: *Show correct/incorrect answer + add icon img if correct or incorrect
+        Done: *Ant monitoriaus displays po du atsakymus rodyti kiekvienoj eilej, o mobile sustatyti i stacka
