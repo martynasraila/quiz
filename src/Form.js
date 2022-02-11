@@ -3,20 +3,22 @@ import { fetchCategories } from "./API";
 import styles from "./Form.module.css";
 
 const Form = (props) => {
-	const [formValid, setFormValid] = useState(true);
-
+	const [formValid, setFormValid] = useState(false);
+	const [numberOfQuestionsValid, setNumberOfQuestionsValid] = useState(true);
 	const onNumOfQuestionsChange = (ev) => {
 		props.onNumOfQuestionsChange(ev);
 		const numOfQuestions = parseFloat(ev.target.value);
 		if (!isNaN(numOfQuestions)) {
 			// validate the number of questions
-			if ((numOfQuestions > 0) && parseInt(ev.target.value) === numOfQuestions) {
+			if (numOfQuestions > 0 && parseInt(ev.target.value) === numOfQuestions) {
+				setNumberOfQuestionsValid(true);
 				setFormValid(true);
 			} else {
+				setNumberOfQuestionsValid(false);
 				setFormValid(false);
 			}
-		}
-		else {
+		} else {
+			setNumberOfQuestionsValid(false);
 			setFormValid(false);
 		}
 	};
@@ -37,6 +39,7 @@ const Form = (props) => {
 						setStateOfCategories={props.setStateOfCategories}
 						categorySelected={props.categorySelected}
 						changeCategory={props.changeCategory}
+						setFormValid={setFormValid}
 					/>
 				</div>
 				<div className={styles["form-row"]}>
@@ -77,24 +80,25 @@ const Form = (props) => {
 				<div className={styles["form-row"]}>
 					<h3>Number Of Questions</h3>
 					<input
+						className={!numberOfQuestionsValid ? styles.red : null}
 						type="number"
 						pattern="[0-9]*"
 						onChange={onNumOfQuestionsChange}
 						value={props.numOfQuestions}
 					/>
 				</div>
-				<button
-					className={styles["startbtn"]}
-					onClick={props.playClick}
-					disabled={!formValid}
-				>
-					<h2>Start Quiz!</h2>
-					<img
-						src={require("./img/play-svgrepo-com (2).svg").default}
-						alt="play-icon"
-					></img>
-				</button>
 			</div>
+			<button
+				className={styles["startbtn"]}
+				onClick={props.playClick}
+				disabled={!formValid}
+			>
+				<h2>Start Quiz!</h2>
+				<img
+					src={require("./img/play-svgrepo-com (2).svg").default}
+					alt="play-icon"
+				></img>
+			</button>
 		</div>
 	);
 };
@@ -114,6 +118,7 @@ const CategoryDropDown = (props) => {
 				setCategories(data);
 				props.setStateOfCategories(true);
 			}
+			props.setFormValid(true);
 			setLoading(false);
 		}
 		getItems();

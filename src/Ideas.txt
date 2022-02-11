@@ -1,7 +1,5 @@
 Add styling
     Ideas: 
-        *Style settings/form
-        *Form validation
         *Style the answer buttons + onHover + Show selected
         *Animations on conditional rendering (answers swiping in etc)
         *Display category and difficulty in status bar
@@ -13,6 +11,8 @@ Add styling
         *Add highscores feature
         *Index page should consist of three buttons: Play, Customize, HighScores
         *Work with local storage
+        Done: *Style settings/form
+        Done: *Form validation
         Done: *Status bar with underline: questions, score``
         Done: *Rotate svg on hover
         Done: *Question progress bar

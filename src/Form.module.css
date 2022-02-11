@@ -1,78 +1,74 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 100%;
-    max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 100%;
+	max-width: 100%;
 }
 
 .form-info {
-    padding: 2rem 1.5rem 2rem 1.5rem;
-    text-align: center;
+	padding: 2rem 1.5rem 1rem 1.5rem;
+	text-align: center;
 }
 .form {
-   padding: 2rem;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-around;
-   align-items: center;
-   width: 100%;
-} 
+	padding: 2rem;
+	padding-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: stretch;
+	min-width: 30%;
+	max-width: 100%;
+}
 
 .form-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-    width: 80%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1rem;
+	/* width: 80%; */
 }
 
 .form-row select {
-    width: 80%;
-    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
-    border-radius: 2rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    color: var(--clr-primary-12);
-    font-size: 1rem;
-    border: none;
+	width: 80%;
+	box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
+	border-radius: 2rem;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	color: var(--clr-primary-12);
+	border: none;
 }
 .form-row input {
-    width: 80%;
-    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
-    border-radius: 2rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    color: var(--clr-primary-12);
-    font-size: 1rem;
-    border: none;
+	width: 80%;
+	box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
+	border-radius: 2rem;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	color: var(--clr-primary-12);
+	border: none;
 }
 
 .form-row h3 {
-    padding: 0.5rem;
+	padding: 0.5rem;
 }
 
 .radiobtns {
-    border: 2px solid rgba(56, 147, 201, 0.3);
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-    color: var(--clr-primary-12);
-    width: 80%;
+	border: 2px solid rgba(56, 147, 201, 0.3);
+	border-radius: 2rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--clr-primary-12);
+	width: 80%;
+	padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .radiobtns label {
-    padding: 0.5rem 2rem 0.5rem 2rem;
-    font-size: 1rem;
 }
 
 .radiobtns input {
-    box-shadow: 0 0 0 rgba(122, 122, 122, 0.3);
-    
+	box-shadow: 0 0 0 rgba(122, 122, 122, 0.3);
 }
-
 
 .startbtn {
 	overflow: hidden;
@@ -90,6 +86,7 @@
 	box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
 	transition: transform 0.5s ease, box-shadow 0.5s ease;
 	position: relative;
+    transition: background 0.3s ease;
 }
 
 .startbtn::after {
@@ -97,7 +94,7 @@
 	width: 100%;
 	padding-top: 100%;
 	position: absolute;
-	background-color: var(--clr-primary-1);
+	/* background-color: var(--clr-primary-1); */
 	background: linear-gradient(
 		225deg,
 		var(--clr-primary-7) 0%,
@@ -115,8 +112,6 @@
 	transform: rotate(150deg);
 }
 .startbtn h2 {
-	font-size: large;
-	font-weight: normal;
 	margin-left: 1rem;
 	margin-right: auto;
 	color: white;
@@ -136,4 +131,18 @@
 
 .startbtn:hover img {
 	transform: rotate(360deg);
+}
+
+.startbtn:disabled,  .startbtn:disabled:hover::after, .startbtn:disabled::after {
+    transition: all 1s ease;
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.red {
+    outline: 2px solid rgb(255 0 0 / 50%);
+}
+
+@media (min-width:1000px) {
+    .startbtn {
+    }   
 }

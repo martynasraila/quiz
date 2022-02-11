@@ -4,7 +4,7 @@
 	justify-content: center;
 	align-items: center;
 	margin: 1rem 1rem 1rem 1rem;
-    /* to center the container */
+	/* to center the container */
 	margin-top: auto;
 	margin-bottom: auto;
 	padding-top: 0.5rem;
@@ -12,17 +12,17 @@
 }
 
 .question {
-    font-size: 1rem;
 	justify-self: center;
 	align-self: center;
-	color:var(--clr-primary-15);
+	color: var(--clr-primary-15);
 	font-weight: 600;
-    padding-bottom: 3%;
-    padding-top: 3%;
+	font-size: 1.25rem;
+	padding-bottom: 3%;
+	padding-top: 3%;
 	text-align: start;
-    max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+	max-width: 100%;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .answers {
@@ -32,11 +32,8 @@
 	flex-direction: column;
 	min-width: 90%;
 	max-width: 90%;
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
 }
-
-
-
 
 @media (min-width: 1000px) {
 	.answers {
@@ -45,8 +42,9 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		margin-top: 2rem;
-		
 	}
 
-	
+	.question {
+		font-size: 1.5rem;
+	}
 }

@@ -144,6 +144,7 @@ const App = () => {
 				{showResults ? <Results selectedAnswers={selectedAnswers} /> : null}
 				{/* Restart quiz button -> dialog box: Restart or restart with different settings*/}
 				{/* <Results/> */}
+				{quizFinished ? 
 				<section
 					className={`${styles["startbtns"] + " "} ${
 						!contentVisible ? styles["active"] : ""
@@ -163,7 +164,7 @@ const App = () => {
 							alt="settings-icon"
 						></img>
 					</button>
-				</section>
+				</section> : null}
 			</div>
 			<div className={styles.circle1}></div>
 			<div className={styles.circle2}></div>
