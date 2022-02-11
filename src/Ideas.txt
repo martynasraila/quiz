@@ -3,6 +3,7 @@ Add styling
         *Style settings/form
         *Form validation
         *Style the answer buttons + onHover + Show selected
+        *Animations on conditional rendering (answers swiping in etc)
         *Display category and difficulty in status bar
         *On desktop move status to left
         *Sweep in animacija

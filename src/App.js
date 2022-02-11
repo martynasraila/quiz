@@ -1,8 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Form from "./Form";
 import Quiz from "./Quiz";
 import Results from "./Results";
 import styles from "./App.module.css";
+import { fetchQuizQuestions } from "./API";
 
 const App = () => {
 	const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -17,6 +18,9 @@ const App = () => {
 	const [showResults, setShowResults] = useState(false);
 	const [sameSettings, setSameSettings] = useState(false);
 	const [contentVisible, setContentVisible] = useState(false);
+	const [quizVisible, setQuizVisible] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [questions, setQuestions] = useState([]);
 
 	const setStateOfCategoriesCallBack = (loaded) => {
 		setCategoriesLoaded(loaded);
@@ -40,29 +44,50 @@ const App = () => {
 	const showResultsOnClick = () => {
 		setShowResults(true);
 	};
-	const restartWithSameSettings = () => {
-		setShowResults(false);
-		setQuizFinished(true);
-		setSelectedAnswers([]);
-		setSameSettings(true);
-		quizRef.current.startQuiz();
-	};
+
 	const restartWithDifferentSettings = () => {
-		setShowResults(false);
 		setQuizFinished(true);
+		setShowResults(false);
 		setSelectedAnswers([]);
 		setSameSettings(false);
 	};
 	const playOnClick = () => {
+		setQuizVisible(true);
 		setContentVisible(true);
 		restartWithSameSettings();
 	};
 	const settingsOnClick = () => {
 		setContentVisible(true);
 		restartWithDifferentSettings();
+		setQuizVisible(false);
 	};
 	// add reference to Quiz child component to call the start game function
-	const quizRef = useRef();
+	// const quizRef = useRef();
+
+	const restartWithSameSettings = () => {
+		setQuizFinished(true);
+		setShowResults(false);
+		setSelectedAnswers([]);
+		setSameSettings(true);
+		startQuiz();
+	};
+
+	async function startQuiz() {
+		// making a call to quiz api to fetch questions and answers
+		setLoading(true);
+		setQuizFinished(false);
+		const newQuestions = await fetchQuizQuestions(
+			numOfQuestions,
+			difficulty,
+			categorySelected
+		);
+		setQuestions(newQuestions);
+		// setScore(0);
+		setSelectedAnswers([]);
+		// setCurrentQuestion(0);
+		setLoading(false);
+		setQuizVisible(true);
+	}
 
 	return (
 		<div className={styles.hero}>
@@ -84,20 +109,26 @@ const App = () => {
 						playClick={playOnClick}
 					/>
 				) : null}
-				<Quiz
-					categoriesLoaded={categoriesLoaded}
-					category={categorySelected}
-					difficulty={difficulty}
-					numOfQuestions={numOfQuestions}
-					setQuizFinished={setQuizFinishedCallBack}
-					quizFinished={quizFinished}
-					selectedAnswers={selectedAnswers}
-					setSelectedAnswers={setSelectedAnswersCallBack}
-					ref={quizRef}
-				/>
-				{/* If all questions finished */}
-				{selectedAnswers.length === parseInt(numOfQuestions) ? (
-					<div>
+				{/* Check if all questions finished, show quiz */}
+				{quizVisible && !quizFinished ? (
+					<Quiz
+						categoriesLoaded={categoriesLoaded}
+						category={categorySelected}
+						difficulty={difficulty}
+						numOfQuestions={numOfQuestions}
+						setQuizFinished={setQuizFinishedCallBack}
+						quizFinished={quizFinished}
+						selectedAnswers={selectedAnswers}
+						setSelectedAnswers={setSelectedAnswersCallBack}
+						questions={questions}
+						loading={loading}
+						quizVisible={quizVisible}
+						setQuizVisible={setQuizVisible}
+					/>
+				) : null }
+				{!quizVisible && (selectedAnswers.length >= numOfQuestions) && (numOfQuestions > 0) ? 
+					(
+					<div className={styles.endbtns}>
 						<button type={"button"} onClick={showResultsOnClick}>
 							Check Answers
 						</button>
@@ -109,6 +140,7 @@ const App = () => {
 						</button>
 					</div>
 				) : null}
+
 				{showResults ? <Results selectedAnswers={selectedAnswers} /> : null}
 				{/* Restart quiz button -> dialog box: Restart or restart with different settings*/}
 				{/* <Results/> */}

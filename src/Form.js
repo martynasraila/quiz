@@ -3,6 +3,24 @@ import { fetchCategories } from "./API";
 import styles from "./Form.module.css";
 
 const Form = (props) => {
+	const [formValid, setFormValid] = useState(true);
+
+	const onNumOfQuestionsChange = (ev) => {
+		props.onNumOfQuestionsChange(ev);
+		const numOfQuestions = parseFloat(ev.target.value);
+		if (!isNaN(numOfQuestions)) {
+			// validate the number of questions
+			if ((numOfQuestions > 0) && parseInt(ev.target.value) === numOfQuestions) {
+				setFormValid(true);
+			} else {
+				setFormValid(false);
+			}
+		}
+		else {
+			setFormValid(false);
+		}
+	};
+
 	return (
 		<div className={styles["form-container"]}>
 			<h3 className={styles["form-info"]}>
@@ -11,7 +29,9 @@ const Form = (props) => {
 			</h3>
 			<div className={styles["form"]}>
 				<div className={styles["form-row"]}>
-					<label htmlFor="category"><h3>Category</h3></label>
+					<label htmlFor="category">
+						<h3>Category</h3>
+					</label>
 					<CategoryDropDown
 						id="category"
 						setStateOfCategories={props.setStateOfCategories}
@@ -59,11 +79,15 @@ const Form = (props) => {
 					<input
 						type="number"
 						pattern="[0-9]*"
-						onChange={props.onNumOfQuestionsChange}
+						onChange={onNumOfQuestionsChange}
 						value={props.numOfQuestions}
 					/>
 				</div>
-				<button className={styles["startbtn"]} onClick={props.playClick}>
+				<button
+					className={styles["startbtn"]}
+					onClick={props.playClick}
+					disabled={!formValid}
+				>
 					<h2>Start Quiz!</h2>
 					<img
 						src={require("./img/play-svgrepo-com (2).svg").default}

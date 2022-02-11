@@ -12,14 +12,17 @@
 }
 
 .question {
-    font-size: 1.25rem;
+    font-size: 1rem;
 	justify-self: center;
 	align-self: center;
-    padding-left: 1rem;
-	padding-right: 1rem;
 	color:var(--clr-primary-15);
-	font-size: 1.25rem;
 	font-weight: 600;
+    padding-bottom: 3%;
+    padding-top: 3%;
+	text-align: start;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .answers {
