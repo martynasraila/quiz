@@ -110,7 +110,6 @@ const App = () => {
 				{quizVisible && !quizFinished ? (
 					<Quiz
 						categoriesLoaded={categoriesLoaded}
-						category={categorySelected}
 						difficulty={difficulty}
 						numOfQuestions={numOfQuestions}
 						setQuizFinished={setQuizFinishedCallBack}
@@ -121,6 +120,7 @@ const App = () => {
 						loading={loading}
 						quizVisible={quizVisible}
 						setQuizVisible={setQuizVisible}
+						category={categorySelected.name}
 					/>
 				) : null }
 				{!quizVisible && (selectedAnswers.length >= numOfQuestions) && (numOfQuestions > 0) ? 

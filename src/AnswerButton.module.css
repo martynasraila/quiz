@@ -7,6 +7,9 @@
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.3);
     padding: 0.25rem;
     padding-left: 5%;
+	/* transform: translateX(100vw); */
+	/* transition: transform 2s; */
+	animation: SlideIn 0.4s ease-out 0.1s backwards;
 }
 
 .answer:hover {
@@ -70,6 +73,11 @@
 	100% {
 		filter: var(--destColor);
 	}
+}
+
+@keyframes SlideIn {
+	0% {transform: translateX(100vw)}
+	100% {transform: none}
 }
 
 @media (min-width: 1000px) {

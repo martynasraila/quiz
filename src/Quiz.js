@@ -61,7 +61,7 @@ const Quiz = (props) => {
 
 	return (
 		<div className={styles.quiz}>
-			{!props.quizFinished ? (
+			{!props.quizFinished && !props.loading ? (
 				<div className={styles["status-bar"]}>
 					<p>
 						Score:  <p className={styles.score +" "+ styles[animationScore]}>{score}</p>
@@ -74,8 +74,12 @@ const Quiz = (props) => {
 							)}
 						/>
 						<p className={styles["question-nr"]}>
-							Question: {currentQuestion + 1} / {props.numOfQuestions}
+							Question: <p className={styles.bold}>{currentQuestion + 1}/{props.numOfQuestions}</p>
 						</p>
+					</div>
+					<div className={styles["game-info"]}>
+					<p>Category: <p className={styles.bold}>{props.category}</p></p>
+					<p>Difficulty: <p className={styles.bold}>{props.difficulty}</p></p>
 					</div>
 				</div>
 			) : null}

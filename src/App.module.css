@@ -100,7 +100,8 @@ div .hero {
 	min-height: 100vh;
 	min-width: 100vw;
 	max-height: 100vh;
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	display: flex;
 	justify-content: center;
 	align-items: center;

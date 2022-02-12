@@ -42,6 +42,8 @@ const AnswerButton = (props) => {
 			onClick={props.callBack}
 			className={className}
 			key={props.answer}
+			style={{animationDelay: `${props.answerNr*200}ms`}}
+			// add style animation delay = answerNr * 0.2s
 		>
 			<h3>
 				{props.answerNr + 1}. {props.answer}
