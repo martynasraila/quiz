@@ -1,17 +1,14 @@
 Add styling
     Ideas: 
-        *
-        *Display category and difficulty in status bar
-        *Animations on conditional rendering (answers swiping in etc)
-        *Sweep in animacija
         *Add preloader
         *Add percentage circle for score when showing results
         *Review results: traverse through questions
-        Optional: *Add image for each chosen category 
-        Optional: *Add highscores feature
         Optional: *Index page should consist of three buttons: Play, Customize, HighScores
         Optional: *Work with local storage
+        Optional: *Add highscores feature
         
+        Done: *Animations on conditional rendering (answers swiping in)
+        Done: *Display category and difficulty in status bar
         Done: *On desktop move status to left
         Done: *Style the answer buttons + onHover + Show selected
         Done: *Style settings/form
