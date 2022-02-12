@@ -19,40 +19,13 @@
 	--clr-primary-13: #658ec6;
 	--clr-primary-14: #426696;
 	--clr-primary-15: rgb(9 31 76 / 80%);
-	/* lighter shades of primary color */
-	/* --clr-primary-6: hsl(205, 89%, 70%);
-	/* darkest grey - used for headings */
-	/* --clr-grey-1: hsl(209, 61%, 16%);
-	--clr-grey-2: hsl(211, 39%, 23%);
-	--clr-grey-3: hsl(209, 34%, 30%);
-	--clr-grey-4: hsl(209, 28%, 39%); */
-	/* grey used for paragraphs */
-	/* --clr-grey-5: hsl(210, 22%, 49%);
-	--clr-grey-6: hsl(209, 23%, 60%);
-	--clr-grey-7: hsl(211, 27%, 70%); 
-	--clr-grey-8: hsl(210, 31%, 80%);
-	--clr-grey-9: hsl(212, 33%, 89%);
-	--clr-grey-10: hsl(210, 36%, 96%);
-	--clr-white: #fff;
-	--clr-red-dark: hsl(360, 67%, 44%);
-	--clr-red-light: hsl(360, 71%, 66%);
-	--clr-green-dark: hsl(125, 67%, 44%);
-	--clr-green-light: hsl(125, 71%, 66%);
-	--clr-black: #222;
-
-	--spacing: 0.1rem;
-	--radius: 0.75rem;
-	--light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	--dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-	--max-width: 1170px;
-	--fixed-width: 620px; */
-	/* transition: ; */
 }
 
 html * {
 	font-family: "Poppins", sans-serif !important;
 	font-weight: 500;
-	font-size: 1rem;
+	font-size: 1.25rem;
+
 }
 
 * {
@@ -78,12 +51,13 @@ p {
   font-weight: 500;
   opacity: 0.8;
   font-size:1rem;
+
 }
 h3 {
 	color: var(--clr-primary-14);
 	font-weight: 500;
 	opacity: 0.8;
-	font-size: 1rem;
+	font-size: 1.25rem;
   }
 
 @keyframes fadein {
@@ -126,7 +100,7 @@ div .hero {
 	min-height: 100vh;
 	min-width: 100vw;
 	max-height: 100vh;
-	overflow: hidden;
+	overflow: scroll;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -225,8 +199,11 @@ button {
 	overflow: hidden;
 	background: transparent;
 	max-height: 30%;
-	margin: 1rem 1rem 1rem 1rem;
+	margin: 1rem 0 1rem 0;
 	padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+	min-width:90%;
+	max-width: 90%;
+    align-self: center;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -268,6 +245,7 @@ button {
 	opacity: 1;
 	padding-left: 1rem;
 	padding-right: 0.5rem;
+	font-size: 1.5rem;
 }
 
 .startbtn img {
@@ -296,6 +274,8 @@ button {
 		flex-direction: row;	
 		flex: 1;
 		min-width: 60%;
+		max-width:none;
+		margin: 1rem 1rem 1rem 1rem;
 	}
 
 	.startbtn {
@@ -313,17 +293,5 @@ button {
 		max-width: 70%;
 		flex: 1;
 	}
-	html * {
-		font-size: 1.5rem;
-	}
-	
-	h1 {
-		font-size: 3rem;
-	}
-	p {
-	  font-size:1.5rem;
-	}
-	h3 {
-		font-size: 1.5rem;
-	  }
+
 }

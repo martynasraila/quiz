@@ -61,8 +61,7 @@ const App = () => {
 		restartWithDifferentSettings();
 		setQuizVisible(false);
 	};
-	// add reference to Quiz child component to call the start game function
-	// const quizRef = useRef();
+
 
 	const restartWithSameSettings = () => {
 		setQuizFinished(true);
@@ -73,18 +72,16 @@ const App = () => {
 	};
 
 	async function startQuiz() {
-		// making a call to quiz api to fetch questions and answers
 		setLoading(true);
 		setQuizFinished(false);
+		// making a call to quiz api to fetch questions and answers
 		const newQuestions = await fetchQuizQuestions(
 			numOfQuestions,
 			difficulty,
 			categorySelected
 		);
 		setQuestions(newQuestions);
-		// setScore(0);
 		setSelectedAnswers([]);
-		// setCurrentQuestion(0);
 		setLoading(false);
 		setQuizVisible(true);
 	}

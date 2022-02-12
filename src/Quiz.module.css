@@ -31,14 +31,9 @@
 
 .status-bar {
 	display: flex;
-	/* position: absolute; */
-	/* top: 0; */
 	margin-top: 0;
 	border-radius: 2rem;
-	align-self: flex-start;
-	justify-self: flex-start;
-	/* flex: 0; */
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
 	background: linear-gradient(
@@ -47,15 +42,50 @@
 		rgba(255, 255, 255, 0.3)
 	);
 	width: 100%;
-	;
 	min-height: 10%;
-	max-height: 10;
-	padding: 0.5rem;
 }
 
-.status-bar div {
-	width: 90%;
+.status-bar > * {
 	text-align: center;
+	padding: 1rem;
+}
+
+.status-bar * {
+	/* text-align: center; */
+	/* padding: 1rem; */
+	font-size: 1.25rem;
+}
+
+.score {
+	font-weight: 600;
+	opacity: 0.7;
+}
+
+.score.goUp {
+	display: inline-flex;
+	opacity: 0;
+	transform: translate3d(0, -20px, 0);
+	transition: 0.3s ease-in-out;
+}
+
+.score.waitDown {
+	display: inline-flex;
+	opacity: 0;
+	transform: translate3d(0, 20px, 0);
+}
+.score.initial {
+	display: inline-flex;
+	opacity: 1;
+	transform: translate3d(0, 0px, 0);
+	transition: 0.3s ease-in-out;
+}
+
+.quiz-content {
+	margin-top: auto;
+	margin-bottom: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 button.next {
@@ -63,8 +93,8 @@ button.next {
 	min-width: 20%;
 	align-self: center;
 	max-height: 30%;
-	margin-top: 0.5rem;
-	margin-bottom: 5%;
+	margin-top: clamp(1%, 5%, 5%);
+	margin-bottom: clamp(1%, 5%, 5%);
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	display: flex;
 	flex-direction: row;
@@ -106,7 +136,7 @@ button.next::after {
 .next:hover {
 	transform: translate(0, -0.25rem);
 	box-shadow: 6px 6px 20px var(--clr-primary-8),
-	-6px -6px 20px 0 var(--clr-primary-8);
+		-6px -6px 20px 0 var(--clr-primary-8);
 }
 .next:hover::after {
 	transform: rotate(180deg);
@@ -129,8 +159,8 @@ button.next::after {
 	margin-left: 1rem;
 	margin-right: auto;
 	color: white;
-  font-weight: 600;
-  opacity: 1;
+	font-weight: 600;
+	opacity: 1;
 }
 
 .next:hover img {
@@ -160,9 +190,15 @@ button.next::after {
 		margin-right: 10%;
 		max-height: 30%;
 	}
-	.status-bar {
+
+	.quiz {
 		flex-direction: row;
-		justify-content: space-around;
+	}
+
+	.status-bar {
+		flex-direction: column;
+		align-self: stretch;
+		max-width: 30%;
 	}
 }
 

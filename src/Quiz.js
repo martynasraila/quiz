@@ -6,24 +6,7 @@ import { useState } from "react";
 const Quiz = (props) => {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [score, setScore] = useState(0);
-
-	// useImperativeHandle(ref, () => ({
-	// 	async startQuiz() {
-	// 		// making a call to quiz api to fetch questions and answers
-	// 		setLoading(true);
-	// 		props.setQuizFinished(false);
-	// 		const newQuestions = await fetchQuizQuestions(
-	// 			props.numOfQuestions,
-	// 			props.difficulty,
-	// 			props.category
-	// 		);
-	// 		setQuestions(newQuestions);
-	// 		setScore(0);
-	// 		props.setSelectedAnswers([]);
-	// 		setCurrentQuestion(0);
-	// 		setLoading(false);
-	// 	},
-	// }));
+	const [animationScore, setAnimationScore] = useState("initial");
 
 	const checkAnswer = (ev) => {
 		if (!props.quizFinished) {
@@ -34,9 +17,9 @@ const Quiz = (props) => {
 				answer === props.questions[currentQuestion].correct_answer
 					? true
 					: false;
-			// if correct increment score by 1
+			// if correct increment score
 			if (answerCorrect) {
-				setScore((prev) => prev + 1);
+				handleScore();
 			}
 			// create the answer object and add it to selected answers array
 			const answerObject = {
@@ -50,11 +33,22 @@ const Quiz = (props) => {
 		}
 	};
 
+	const handleScore = () => {
+		// 1. Old number goes up
+		setTimeout(() => setAnimationScore("goUp"), 0);
+		// 2. Incrementing the counter
+		setTimeout(() => setScore((prev) => prev + 1), 100);
+		// 3. New score waits down
+		setTimeout(() => setAnimationScore("waitDown"), 100);
+		// 4. New number stays in the middle
+		setTimeout(() => setAnimationScore("initial"), 200);
+	};
+
 	const showNextQuestion = () => {
 		// triggers when users click on next question, if its not last question
 		if (currentQuestion + 1 >= props.numOfQuestions) {
 			props.setQuizFinished(true);
-			props.setQuizVisible(false)
+			props.setQuizVisible(false);
 		} else {
 			setCurrentQuestion(currentQuestion + 1);
 		}
@@ -69,8 +63,10 @@ const Quiz = (props) => {
 		<div className={styles.quiz}>
 			{!props.quizFinished ? (
 				<div className={styles["status-bar"]}>
-					<p className={styles.score}>Score: {score}</p>{" "}
-					<div>
+					<p>
+						Score:  <p className={styles.score +" "+ styles[animationScore]}>{score}</p>
+					</p>{" "}
+					<div className={styles.progress}>
 						<ProgressBar
 							percentage={calculatePercent(
 								props.numOfQuestions,
@@ -85,35 +81,34 @@ const Quiz = (props) => {
 			) : null}
 			{props.loading ? <span className={styles.loadbar} /> : null}
 			{!props.loading && !props.quizFinished ? (
-				<QuestionBoard
-					className={styles["question-board"]}
-					answers={props.questions[currentQuestion].answers}
-					question={props.questions[currentQuestion].question}
-					selectedAnswer={
-						props.selectedAnswers
-							? props.selectedAnswers[currentQuestion]
-							: undefined
-					}
-					callBack={checkAnswer}
-				/>
+				<div className={styles["quiz-content"]}>
+					<QuestionBoard
+						className={styles["question-board"]}
+						answers={props.questions[currentQuestion].answers}
+						question={props.questions[currentQuestion].question}
+						selectedAnswer={
+							props.selectedAnswers
+								? props.selectedAnswers[currentQuestion]
+								: undefined
+						}
+						callBack={checkAnswer}
+					/>
+					<button
+						className={`${styles.next + " "} ${
+							props.selectedAnswers.length === currentQuestion + 1
+								? styles["active"]
+								: ""
+						}`}
+						onClick={showNextQuestion}
+					>
+						<h2>Next</h2>
+						<img
+							src={require("./img/next-svgrepo-com (1).svg").default}
+							alt="next-icon"
+						></img>
+					</button>
+				</div>
 			) : null}
-			{props.quizVisible ? (
-				<button
-					className={`${styles.next + " "} ${
-						// !props.quizFinished &&
-						// !props.loading &&
-						props.selectedAnswers.length === currentQuestion + 1 ?
-						// currentQuestion !== props.numOfQuestions - 1 
-						styles["active"] : ""}`}
-					onClick={showNextQuestion}
-				>
-					<h2>Next</h2>
-					<img
-						src={require("./img/next-svgrepo-com (1).svg").default}
-						alt="next-icon"
-					></img>
-				</button> ): null
-			}
 		</div>
 	);
 };
