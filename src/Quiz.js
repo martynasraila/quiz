@@ -53,10 +53,6 @@ const Quiz = (props) => {
 		}
 	};
 
-	// const calculatePercent = (total, number) => {
-	// 	props.selectedAnswers.length === currentQuestion + 1 && number++;
-	// 	return (parseInt(number) / parseInt(total)) * 100;
-	// };
 
 	return (
 		<div className={styles.quiz}>

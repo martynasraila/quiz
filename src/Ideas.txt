@@ -1,12 +1,11 @@
 Add styling
     Ideas: 
-        *Add preloader
-        *Add percentage circle for score when showing results
-        *Review results: traverse through questions
+        Optional: *Add preloader
         Optional: *Index page should consist of three buttons: Play, Customize, HighScores
         Optional: *Work with local storage
         Optional: *Add highscores feature
         
+        Done: *At the end of quiz show percentage collected
         Done: *Animations on conditional rendering (answers swiping in)
         Done: *Display category and difficulty in status bar
         Done: *On desktop move status to left
@@ -17,4 +16,4 @@ Add styling
         Done: *Rotate svg on hover
         Done: *Question progress bar
         Done: *Show correct/incorrect answer + add icon img if correct or incorrect
-        Done: *Ant monitoriaus displays po du atsakymus rodyti kiekvienoj eilej, o mobile sustatyti i stacka
+        Done: *Responsive answers layout

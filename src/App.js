@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import Quiz from "./Quiz";
-import Results from "./Results";
 import styles from "./App.module.css";
 import { fetchQuizQuestions } from "./API";
 import ProgressBar from "./ProgressBar";
@@ -16,7 +15,6 @@ const App = () => {
 	const [numOfQuestions, setNumOfQuestions] = useState(10);
 	const [selectedAnswers, setSelectedAnswers] = useState([]);
 	const [quizFinished, setQuizFinished] = useState(true);
-	const [showResults, setShowResults] = useState(false);
 	const [sameSettings, setSameSettings] = useState(false);
 	const [contentVisible, setContentVisible] = useState(false);
 	const [quizVisible, setQuizVisible] = useState(false);
@@ -43,19 +41,14 @@ const App = () => {
 	const setSelectedAnswersCallBack = (answer) => {
 		setSelectedAnswers(answer);
 	};
-	const showResultsOnClick = () => {
-		setShowResults(true);
-	};
 
 	const restartWithDifferentSettings = () => {
 		setQuizFinished(true);
-		setShowResults(false);
 		setSelectedAnswers([]);
 		setSameSettings(false);
 	};
 	const restartWithSameSettings = () => {
 		setQuizFinished(true);
-		setShowResults(false);
 		setSelectedAnswers([]);
 		setSameSettings(true);
 		startQuiz();
@@ -137,7 +130,7 @@ const App = () => {
 						setScore={setScore}
 					/>
 				) : null}
-				{!quizVisible && !showResults &&
+				{!quizVisible &&
 				selectedAnswers.length >= numOfQuestions &&
 				numOfQuestions > 0 ? (
 					<div className={styles.endscreen}>
@@ -146,9 +139,6 @@ const App = () => {
 							<ProgressBar total={numOfQuestions} currentNumber={score} slowFill={true} />
 						</div>
 						<div className={styles.endbtns}>
-							<button className={styles.startbtn} type={"button"} onClick={showResultsOnClick}>
-								<h2>Check Answers</h2>
-							</button>
 							<button className={styles.startbtn} type={"button"} onClick={restartWithSameSettings}>
 								<h2>Play again!</h2>
 							</button>
@@ -159,7 +149,6 @@ const App = () => {
 					</div>
 				) : null}
 
-				{showResults ? <Results selectedAnswers={selectedAnswers} /> : null}
 				{quizFinished ? (
 					<section
 						className={`${styles["startbtns"] + " "} ${
