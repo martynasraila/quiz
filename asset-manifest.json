@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/quiz/static/css/main.2ea8bb12.css",
-    "main.js": "/quiz/static/js/main.6f843e56.js",
+    "main.css": "/quiz/static/css/main.de68c0b4.css",
+    "main.js": "/quiz/static/js/main.e4f95bd7.js",
     "static/js/787.e32ba52f.chunk.js": "/quiz/static/js/787.e32ba52f.chunk.js",
     "static/media/play-svgrepo-com (2).svg": "/quiz/static/media/play-svgrepo-com (2).5f19522a6c8a936111f13f31c61df514.svg",
     "static/media/settings-svgrepo-com.svg": "/quiz/static/media/settings-svgrepo-com.162cbe589edc846c26cdaec40a8b39d5.svg",
@@ -9,12 +9,12 @@
     "index.html": "/quiz/index.html",
     "static/media/wrong-svgrepo-com (1).svg": "/quiz/static/media/wrong-svgrepo-com (1).172756c72a254506b259a0ed436ca1dd.svg",
     "static/media/right-svgrepo-com.svg": "/quiz/static/media/right-svgrepo-com.ce959f6e584f3ec5a19d855880784eff.svg",
-    "main.2ea8bb12.css.map": "/quiz/static/css/main.2ea8bb12.css.map",
-    "main.6f843e56.js.map": "/quiz/static/js/main.6f843e56.js.map",
+    "main.de68c0b4.css.map": "/quiz/static/css/main.de68c0b4.css.map",
+    "main.e4f95bd7.js.map": "/quiz/static/js/main.e4f95bd7.js.map",
     "787.e32ba52f.chunk.js.map": "/quiz/static/js/787.e32ba52f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ea8bb12.css",
-    "static/js/main.6f843e56.js"
+    "static/css/main.de68c0b4.css",
+    "static/js/main.e4f95bd7.js"
   ]
 }
