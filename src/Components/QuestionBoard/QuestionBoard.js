@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./QuestionBoard.module.css";
-import AnswerButton from "./AnswerButton";
+import AnswerButton from "../AnswerButton/AnswerButton";
 
 const QuestionBoard = (props) => {
 	return (

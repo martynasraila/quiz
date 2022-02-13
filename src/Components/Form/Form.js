@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchCategories } from "./API";
+import { fetchCategories } from "../../Utils/API";
 import styles from "./Form.module.css";
 
 const Form = (props) => {
@@ -95,7 +95,7 @@ const Form = (props) => {
 			>
 				<h2>Start Quiz!</h2>
 				<img
-					src={require("./img/play-svgrepo-com (2).svg").default}
+					src={require("../../img/play-svgrepo-com (2).svg").default}
 					alt="play-icon"
 				></img>
 			</button>

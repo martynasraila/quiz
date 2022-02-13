@@ -1,6 +1,6 @@
 import styles from "./Quiz.module.css";
-import QuestionBoard from "./QuestionBoard";
-import ProgressBar from "./ProgressBar.js";
+import QuestionBoard from "../QuestionBoard/QuestionBoard";
+import ProgressBar from "../ProgressBar/ProgressBar.js";
 import { useState } from "react";
 
 const Quiz = (props) => {
@@ -101,7 +101,7 @@ const Quiz = (props) => {
 					>
 						<h2>Next</h2>
 						<img
-							src={require("./img/next-svgrepo-com (1).svg").default}
+							src={require("../../img/next-svgrepo-com (1).svg").default}
 							alt="next-icon"
 						></img>
 					</button>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Form from "./Form";
-import Quiz from "./Quiz";
+import Form from "../Form/Form";
+import Quiz from "../Quiz/Quiz";
 import styles from "./App.module.css";
-import { fetchQuizQuestions } from "./API";
-import ProgressBar from "./ProgressBar";
+import { fetchQuizQuestions } from "../../Utils/API";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const App = () => {
 	const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -158,14 +158,14 @@ const App = () => {
 						<button className={styles["startbtn"]} onClick={playOnClick}>
 							<h2>Start Quiz!</h2>
 							<img
-								src={require("./img/play-svgrepo-com (2).svg").default}
+								src={require("../../img/play-svgrepo-com (2).svg").default}
 								alt="play-icon"
 							></img>
 						</button>
 						<button className={styles["startbtn"]} onClick={settingsOnClick}>
 							<h2>Change settings</h2>
 							<img
-								src={require("./img/settings-svgrepo-com.svg").default}
+								src={require("../../img/settings-svgrepo-com.svg").default}
 								alt="settings-icon"
 							></img>
 						</button>

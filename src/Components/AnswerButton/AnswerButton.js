@@ -15,14 +15,14 @@ const AnswerButton = (props) => {
 		if (props.selectedAnswer.correct_answer === props.answer) {
 			className += " " + styles["correct"];
             icon = <img className={styles.correct}
-				src={require("./img/right-svgrepo-com.svg").default}
+				src={require("../../img/right-svgrepo-com.svg").default}
 				alt="correct-icon"
 			/>
             
 		} else {
 			className += " " + styles["incorrect"];
             icon = <img className={styles.incorrect}
-            src={require("./img/wrong-svgrepo-com (1).svg").default}
+            src={require("../../img/wrong-svgrepo-com (1).svg").default}
             alt="correct-icon"
         />
 		}
