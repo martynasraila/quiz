@@ -4,6 +4,7 @@ import Quiz from "./Quiz";
 import Results from "./Results";
 import styles from "./App.module.css";
 import { fetchQuizQuestions } from "./API";
+import ProgressBar from "./ProgressBar";
 
 const App = () => {
 	const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
 	const [quizVisible, setQuizVisible] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [questions, setQuestions] = useState([]);
+	const [score, setScore] = useState(0);
 
 	const setStateOfCategoriesCallBack = (loaded) => {
 		setCategoriesLoaded(loaded);
@@ -51,6 +53,13 @@ const App = () => {
 		setSelectedAnswers([]);
 		setSameSettings(false);
 	};
+	const restartWithSameSettings = () => {
+		setQuizFinished(true);
+		setShowResults(false);
+		setSelectedAnswers([]);
+		setSameSettings(true);
+		startQuiz();
+	};
 	const playOnClick = () => {
 		setQuizVisible(true);
 		setContentVisible(true);
@@ -63,14 +72,6 @@ const App = () => {
 	};
 
 
-	const restartWithSameSettings = () => {
-		setQuizFinished(true);
-		setShowResults(false);
-		setSelectedAnswers([]);
-		setSameSettings(true);
-		startQuiz();
-	};
-
 	async function startQuiz() {
 		setLoading(true);
 		setQuizFinished(false);
@@ -82,9 +83,21 @@ const App = () => {
 		);
 		setQuestions(newQuestions);
 		setSelectedAnswers([]);
+		setScore(0);
 		setLoading(false);
 		setQuizVisible(true);
 	}
+
+	const getEndScore = (score, total) => {
+		const percent = Math.round((score / total) * 100);
+		if (percent <= 50) {
+			return `Eh.. You scored only ${percent}%. Better luck next time!`;
+		} else if (percent <= 80) {
+			return `Not bad at all. You scored ${percent}%. Keep it up!`;
+		} else {
+			return `Excellent! You scored ${percent}%. Choose higher difficulty!`;
+		}
+	};
 
 	return (
 		<div className={styles.hero}>
@@ -92,7 +105,6 @@ const App = () => {
 				className={`${styles["container"] + " "}  ${
 					contentVisible ? styles["active"] : " "
 				}`}
-				// className={styles.container + " " + styles.active}
 			>
 				{contentVisible && quizFinished && !sameSettings ? (
 					<Form
@@ -121,47 +133,55 @@ const App = () => {
 						quizVisible={quizVisible}
 						setQuizVisible={setQuizVisible}
 						category={categorySelected.name}
+						score={score}
+						setScore={setScore}
 					/>
-				) : null }
-				{!quizVisible && (selectedAnswers.length >= numOfQuestions) && (numOfQuestions > 0) ? 
-					(
-					<div className={styles.endbtns}>
-						<button type={"button"} onClick={showResultsOnClick}>
-							Check Answers
-						</button>
-						<button type={"button"} onClick={restartWithSameSettings}>
-							Play again!
-						</button>
-						<button type={"button"} onClick={restartWithDifferentSettings}>
-							Change Settings
-						</button>
+				) : null}
+				{!quizVisible && !showResults &&
+				selectedAnswers.length >= numOfQuestions &&
+				numOfQuestions > 0 ? (
+					<div className={styles.endscreen}>
+						<div className={styles["resulting-score"]}>
+							<h2>{getEndScore(score, numOfQuestions)}</h2>
+							<ProgressBar total={numOfQuestions} currentNumber={score} slowFill={true} />
+						</div>
+						<div className={styles.endbtns}>
+							<button className={styles.startbtn} type={"button"} onClick={showResultsOnClick}>
+								<h2>Check Answers</h2>
+							</button>
+							<button className={styles.startbtn} type={"button"} onClick={restartWithSameSettings}>
+								<h2>Play again!</h2>
+							</button>
+							<button className={styles.startbtn} type={"button"} onClick={restartWithDifferentSettings}>
+								<h2>Change Settings</h2>
+							</button>
+						</div>
 					</div>
 				) : null}
 
 				{showResults ? <Results selectedAnswers={selectedAnswers} /> : null}
-				{/* Restart quiz button -> dialog box: Restart or restart with different settings*/}
-				{/* <Results/> */}
-				{quizFinished ? 
-				<section
-					className={`${styles["startbtns"] + " "} ${
-						!contentVisible ? styles["active"] : ""
-					}`}
-				>
-					<button className={styles["startbtn"]} onClick={playOnClick}>
-						<h2>Start Quiz!</h2>
-						<img
-							src={require("./img/play-svgrepo-com (2).svg").default}
-							alt="play-icon"
-						></img>
-					</button>
-					<button className={styles["startbtn"]} onClick={settingsOnClick}>
-						<h2>Change settings</h2>
-						<img
-							src={require("./img/settings-svgrepo-com.svg").default}
-							alt="settings-icon"
-						></img>
-					</button>
-				</section> : null}
+				{quizFinished ? (
+					<section
+						className={`${styles["startbtns"] + " "} ${
+							!contentVisible ? styles["active"] : ""
+						}`}
+					>
+						<button className={styles["startbtn"]} onClick={playOnClick}>
+							<h2>Start Quiz!</h2>
+							<img
+								src={require("./img/play-svgrepo-com (2).svg").default}
+								alt="play-icon"
+							></img>
+						</button>
+						<button className={styles["startbtn"]} onClick={settingsOnClick}>
+							<h2>Change settings</h2>
+							<img
+								src={require("./img/settings-svgrepo-com.svg").default}
+								alt="settings-icon"
+							></img>
+						</button>
+					</section>
+				) : null}
 			</div>
 			<div className={styles.circle1}></div>
 			<div className={styles.circle2}></div>

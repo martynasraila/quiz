@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const Quiz = (props) => {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [score, setScore] = useState(0);
 	const [animationScore, setAnimationScore] = useState("initial");
 
 	const checkAnswer = (ev) => {
@@ -37,7 +36,7 @@ const Quiz = (props) => {
 		// 1. Old number goes up
 		setTimeout(() => setAnimationScore("goUp"), 0);
 		// 2. Incrementing the counter
-		setTimeout(() => setScore((prev) => prev + 1), 100);
+		setTimeout(() => props.setScore((prev) => prev + 1), 100);
 		// 3. New score waits down
 		setTimeout(() => setAnimationScore("waitDown"), 100);
 		// 4. New number stays in the middle
@@ -54,24 +53,23 @@ const Quiz = (props) => {
 		}
 	};
 
-	const calculatePercent = (total, number) => {
-		props.selectedAnswers.length === currentQuestion + 1 && number++;
-		return (parseInt(number) / parseInt(total)) * 100;
-	};
+	// const calculatePercent = (total, number) => {
+	// 	props.selectedAnswers.length === currentQuestion + 1 && number++;
+	// 	return (parseInt(number) / parseInt(total)) * 100;
+	// };
 
 	return (
 		<div className={styles.quiz}>
 			{!props.quizFinished && !props.loading ? (
 				<div className={styles["status-bar"]}>
 					<p>
-						Score:  <p className={styles.score +" "+ styles[animationScore]}>{score}</p>
+						Score:  <p className={styles.score +" "+ styles[animationScore]}>{props.score}</p>
 					</p>{" "}
 					<div className={styles.progress}>
 						<ProgressBar
-							percentage={calculatePercent(
-								props.numOfQuestions,
-								currentQuestion
-							)}
+							total={props.numOfQuestions}
+							currentNumber={props.selectedAnswers.length}
+							slowFill={false}
 						/>
 						<p className={styles["question-nr"]}>
 							Question: <p className={styles.bold}>{currentQuestion + 1}/{props.numOfQuestions}</p>
